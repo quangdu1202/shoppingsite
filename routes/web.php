@@ -14,5 +14,6 @@ use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    return App\Models\Product::find(1)->orderDetails;
 });
