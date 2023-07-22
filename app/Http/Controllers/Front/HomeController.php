@@ -10,8 +10,11 @@ class HomeController extends Controller
 {
     //
     public function index() {
-        $menProducts = Product::where('feature', true);
+        $menProducts = Product::where('featured', true)->where('product_category_id', 1)->get();
+        $womenProducts = Product::where('featured', true)->where('product_category_id', 2)->get();
 
-        return view('front.index');
+//        dd($menProducts);
+
+        return view('front.index', compact('menProducts', 'womenProducts'));
     }
 }
