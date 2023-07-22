@@ -10,9 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 
-
-Route::get('/', function () {
-    return view('front.index');
-});
+Route::get('/', [Front\HomeController::class, 'index']);
