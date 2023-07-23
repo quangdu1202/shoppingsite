@@ -2232,6 +2232,8 @@ ol {
 	margin-bottom: 0;
 }
 
+
+/* Màu Vàng */
 .product-details .pd-color .pd-color-choose .cc-item label.cc-yellow {
 	background: #EEEE21;
 }
@@ -2239,6 +2241,102 @@ ol {
 .product-details .pd-color .pd-color-choose .cc-item label.cc-violet {
 	background: #8230E3;
 }
+
+/* Màu Đỏ */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-red {
+    background: #FF0000;
+}
+
+/* Màu Xanh dương */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-blue {
+    background: #2773BE;
+}
+
+/* Màu Xanh lá cây */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-green {
+    background: #00FF00;
+}
+
+/* Màu Đen */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-black {
+    background: #000000;
+}
+
+/* Màu Trắng */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-white {
+    background: #FFFFFF;
+}
+
+/* Màu Xám */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-gray {
+    background: #808080;
+}
+
+/* Màu Hồng */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-pink {
+    background: #FFC0CB;
+}
+
+/* Màu Cam */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-orange {
+    background: #FFA500;
+}
+
+/* Màu Tím */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-purple {
+    background: #800080;
+}
+
+/* Màu Nâu */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-brown {
+    background: #A52A2A;
+}
+
+/* Màu Xanh lá cây đậm */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-darkgreen {
+    background: #006400;
+}
+
+/* Màu Xanh da trời */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-skyblue {
+    background: #87CEEB;
+}
+
+/* Màu Xám nhạt */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-lightgray {
+    background: #D3D3D3;
+}
+
+/* Màu Be */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-beige {
+    background: #F5F5DC;
+}
+
+/* Màu Nâu đất */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-tan {
+    background: #D2B48C;
+}
+
+/* Màu Xanh nhạt */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-lightblue {
+    background: #ADD8E6;
+}
+
+/* Màu Tím nhạt */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-lavender {
+    background: #E6E6FA;
+}
+
+/* Màu Xanh lá cây nhạt */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-lightgreen {
+    background: #90EE90;
+}
+
+/* Màu Cam nhạt */
+.product-details .pd-color .pd-color-choose .cc-item label.cc-lightorange {
+    background: #FFDAB9;
+}
+
 
 .product-details .pd-size-choose {
 	margin-bottom: 30px;
@@ -2439,7 +2537,7 @@ ol {
 	padding-bottom: 18px;
 }
 
-.specification-table table tr td.p-catagory {
+.specification-table table tr td.p-category {
 	width: 310px;
 	text-align: left;
 	padding-left: 34px;
@@ -2492,13 +2590,118 @@ ol {
 	text-transform: uppercase;
 }
 
-.specification-table table tr td .cs-color {
+.specification-table table tr td span {
 	display: inline-block;
 	height: 20px;
 	width: 20px;
-	background: #252525;
 	border-radius: 50%;
 }
+
+/*Màu violet*/
+.specification-table table tr td span.cs-violet {
+    background: #8230E3;
+}
+
+/* Màu Xanh dương */
+.specification-table table tr td span.cs-blue {
+    background: #2773BE;
+}
+
+/* Màu Đỏ */
+.specification-table table tr td span.cs-red {
+    background: #FF0000;
+}
+
+/* Màu Xanh lá cây */
+.specification-table table tr td span.cs-green {
+    background: #00FF00;
+}
+
+/* Màu Đen */
+.specification-table table tr td span.cs-black {
+    background: #000000;
+}
+
+/* Màu Trắng */
+.specification-table table tr td span.cs-white {
+    background: #FFFFFF;
+}
+
+/* Màu Xám */
+.specification-table table tr td span.cs-gray {
+    background: #808080;
+}
+
+/* Màu Vàng */
+.specification-table table tr td span.cs-yellow {
+    background: #EEEE21;
+}
+
+/* Màu Hồng */
+.specification-table table tr td span.cs-pink {
+    background: #FFC0CB;
+}
+
+/* Màu Cam */
+.specification-table table tr td span.cs-orange {
+    background: #FFA500;
+}
+
+/* Màu Tím */
+.specification-table table tr td span.cs-purple {
+    background: #800080;
+}
+
+/* Màu Nâu */
+.specification-table table tr td span.cs-brown {
+    background: #A52A2A;
+}
+
+/* Màu Xanh lá cây đậm */
+.specification-table table tr td span.cs-darkgreen {
+    background: #006400;
+}
+
+/* Màu Xanh da trời */
+.specification-table table tr td span.cs-skyblue {
+    background: #87CEEB;
+}
+
+/* Màu Xám nhạt */
+.specification-table table tr td span.cs-lightgray {
+    background: #D3D3D3;
+}
+
+/* Màu Be */
+.specification-table table tr td span.cs-beige {
+    background: #F5F5DC;
+}
+
+/* Màu Nâu đất */
+.specification-table table tr td span.cs-tan {
+    background: #D2B48C;
+}
+
+/* Màu Xanh nhạt */
+.specification-table table tr td span.cs-lightblue {
+    background: #ADD8E6;
+}
+
+/* Màu Tím nhạt */
+.specification-table table tr td span.cs-lavender {
+    background: #E6E6FA;
+}
+
+/* Màu Xanh lá cây nhạt */
+.specification-table table tr td span.cs-lightgreen {
+    background: #90EE90;
+}
+
+/* Màu Cam nhạt */
+.specification-table table tr td span.cs-lightorange {
+    background: #FFDAB9;
+}
+
 
 .customer-review-option {
 	padding-top: 55px;
@@ -4264,7 +4467,7 @@ ol {
 		padding: 18px 30px;
 		margin-bottom: 10px;
 	}
-	.specification-table table tr td.p-catagory {
+	.specification-table table tr td.p-category {
 		width: 160px;
 	}
 	.blog-details-inner .blog-post .next-blog .nb-pic i {
