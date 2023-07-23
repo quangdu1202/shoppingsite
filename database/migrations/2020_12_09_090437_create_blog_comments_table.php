@@ -14,7 +14,7 @@ class CreateBlogCommentsTable extends Migration
     public function up()
     {
         Schema::create('blog_comments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
 
             $table->integer('blog_id')->unsigned();
             $table->integer('user_id')->unsigned()->nullable();
