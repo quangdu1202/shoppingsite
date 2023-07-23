@@ -21,7 +21,7 @@ abstract class BaseRepositories implements RepositoriesInterface
         return $this->model->all();
     }
 
-    public function find(int $id)
+    public function find($id)
     {
         return $this->model->findOrFail($id);
     }
@@ -37,7 +37,7 @@ abstract class BaseRepositories implements RepositoriesInterface
         return $object->update($data);
     }
 
-    public function delete(int $id)
+    public function delete($id)
     {
         $object = $this->model->find($id);
         return $object->delete();

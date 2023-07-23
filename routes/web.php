@@ -12,6 +12,15 @@
 */
 
 use App\Http\Controllers\Front;
+use App\Repositories\Product\ProductRepositoryInterface;
+use App\Service\Product\ProductServiceInterface;
 use Illuminate\Http\Request;
 
-Route::get('/', [Front\HomeController::class, 'index']);
+//Route::get('/', [Front\HomeController::class, 'index']);
+//Route::get('/',function (ProductRepositoryInterface $productRepository) {
+//    return $productRepository->all();
+//});
+
+Route::get('/',function (ProductServiceInterface $productService) {
+    return $productService->all();
+});
