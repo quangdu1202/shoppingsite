@@ -133,83 +133,64 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="front/img/product-single/product-1.jpg" alt="">
+                                <img class="product-big-img" src="front/img/product-single/{{$product->productImages[0]->path}}" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
                             </div>
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="front/img/product-single/product-1.jpg">
-                                        <img src="front/img/product-single/product-1.jpg" alt="">
-                                    </div>
-                                    <div class="pt" data-imgbigurl="front/img/product-single/product-2.jpg">
-                                        <img src="front/img/product-single/product-2.jpg" alt="">
-                                    </div>
-                                    <div class="pt" data-imgbigurl="front/img/product-single/product-3.jpg">
-                                        <img src="front/img/product-single/product-3.jpg" alt="">
-                                    </div>
-                                    <div class="pt" data-imgbigurl="front/img/product-single/product-1.jpg">
-                                        <img src="front/img/product-single/product-1.jpg" alt="">
-                                    </div>
+                                    @foreach($product->productImages as $productImage)
+                                        <div class="pt active" data-imgbigurl="front/img/product-single/{{$productImage->path}}">
+                                            <img src="front/img/product-single/{{$productImage->path}}" alt="">
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="product-details">
                                 <div class="pd-title">
-                                    <span>Oranges</span>
-                                    <h3>Pink Pineapple</h3>
+                                    <span>{{$product->tag}}</span>
+                                    <h3>{{$product->name}}</h3>
                                     <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
                                 <div class="pd-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <span>(5)</span>
+                                    @for($i = 1; $i <= 5; $i++)
+                                        @if($i <= $product->avgRating)
+                                            <i class="fa fa-star"></i>
+                                        @else
+                                            <i class="fa fa-star-o"></i>
+                                        @endif
+                                    @endfor
+                                    <span>({{count($product->productComments)}})</span>
                                 </div>
                                 <div class="pd-desc">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic in placeat excepturi
-                                        aut omnis possimus tempora, laborum sint corrupti neque provident iure maxime
-                                        molestias sapiente tempore quidem, sit inventore perferendis.</p>
-                                    <h4>$999.99<span>$1099.99</span></h4>
+                                    <p>{{$product->content}}</p>
+                                    @if($product->discount != null)
+                                        <h4>${{$product->discount}}<span>${{$product->price}}</span></h4>
+                                    @else
+                                        <h4>${{$product->price}}</h4>
+                                    @endif
                                 </div>
                                 <div class="pd-color">
                                     <h6>Color</h6>
                                     <div class="pd-color-choose">
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-black">
-                                            <label for="cc-black"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-yellow">
-                                            <label for="cc-yellow" class="cc-yellow"></label>
-                                        </div>
-                                        <div class="cc-item">
-                                            <input type="radio" id="cc-violet">
-                                            <label for="cc-violet" class="cc-violet"></label>
-                                        </div>
+                                        @foreach(array_unique(array_column($product->productDetails->toArray(), 'color')) as $productColor)
+                                            <div class="cc-item">
+                                                <input type="radio" id="cc-{{$productColor}}">
+                                                <label for="cc-{{$productColor}}" class="cc-{{$productColor}}"></label>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="pd-size-choose">
-                                    <div class="sc-item">
-                                        <input type="radio" id="s-size">
-                                        <label for="s-size">S</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="m-size">
-                                        <label for="m-size">M</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="l-size">
-                                        <label for="l-size">L</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="xl-size">
-                                        <label for="xl-size">XL</label>
-                                    </div>
+                                    @foreach(array_unique(array_column($product->productDetails->toArray(), 'size')) as $productSize)
+                                        <div class="sc-item">
+                                            <input type="radio" id="s-{{$productSize}}">
+                                            <label for="s-{{$productSize}}">{{$productSize}}</label>
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <div class="quantity">
                                     <div class="quantity">
@@ -220,12 +201,13 @@
                                     </div>
                                 </div>
                                 <ul class="pd-tags">
-                                    <li><span>CATEGORIES: </span>Accessories, Wallets & Cases</li>
-                                    <li><span>TAGS: </span>Clothing, T-shirt, Women</li>
+                                    <li><span>CATEGORIES: </span>{{$product->productCategory->name}}</li>
+                                    <li><span>TAGS: </span>{{$product->tag}}</li>
                                 </ul>
                                 <div class="pd-share">
-                                    <div class="p-code">SKU: 0012</div>
+                                    <div class="p-code">SKU: {{$product->sku}}</div>
                                     <div class="pd-social">
+                                        <span>Share:</span>
                                         <a href="#"><i class="ti-facebook"></i></a>
                                         <a href="#"><i class="ti-twitter"></i></a>
                                         <a href="#"><i class="ti-instagram"></i></a>
@@ -246,83 +228,93 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
                                     <div class="product-content">
-                                        <div class="row">
-                                            <div class="col-lg-7">
-                                                <h5>Introduction</h5>
-                                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet nisi
-                                                    tenetur, a molestiae sequi nesciunt aut sunt accusantium facere
-                                                    molestias enim itaque aliquid ratione incidunt iusto voluptatibus
-                                                    obcaecati laudantium eveniet!</p>
-                                                <h5>Feature</h5>
-                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia cumque,
-                                                    incidunt placeat saepe aspernatur omnis blanditiis nesciunt, temporibus
-                                                    non ipsa laudantium et nisi eligendi deserunt impedit minima autem
-                                                    eveniet ut.</p>
-                                            </div>
-                                            <div class="col-lg-5">
-                                                <img src="front/img/product-single/tab-desc.jpg" alt="">
-                                            </div>
-                                        </div>
+                                        {!! $product->description !!}
                                     </div>
+{{--                                    <div class="product-content">--}}
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-lg-7">--}}
+{{--                                                <h5>Introduction</h5>--}}
+{{--                                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet nisi--}}
+{{--                                                    tenetur, a molestiae sequi nesciunt aut sunt accusantium facere--}}
+{{--                                                    molestias enim itaque aliquid ratione incidunt iusto voluptatibus--}}
+{{--                                                    obcaecati laudantium eveniet!</p>--}}
+{{--                                                <h5>Feature</h5>--}}
+{{--                                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia cumque,--}}
+{{--                                                    incidunt placeat saepe aspernatur omnis blanditiis nesciunt, temporibus--}}
+{{--                                                    non ipsa laudantium et nisi eligendi deserunt impedit minima autem--}}
+{{--                                                    eveniet ut.</p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-lg-5">--}}
+{{--                                                <img src="front/img/product-single/tab-desc.jpg" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="specification-table">
                                         <table>
                                             <tr>
-                                                <td class="p-catagory">Customer Rating</td>
+                                                <td class="p-category">Customer Rating</td>
                                                 <td>
                                                     <div class="pd-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <span>(5)</span>
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            @if($i <= $product->avgRating)
+                                                                <i class="fa fa-star"></i>
+                                                            @else
+                                                                <i class="fa fa-star-o"></i>
+                                                            @endif
+                                                        @endfor
+                                                        <span>({{count($product->productComments)}})</span>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Price</td>
+                                                <td class="p-category">Price</td>
                                                 <td>
-                                                    <div class="p-price">
-                                                        $999.99
-                                                    </div>
+                                                    <div class="p-price">${{$product->price}}</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Add To Cart</td>
+                                                <td class="p-category">Add To Cart</td>
                                                 <td>
                                                     <div class="cart-add">+ Add to Cart</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Availability</td>
+                                                <td class="p-category">Availability</td>
                                                 <td>
-                                                    <div class="p-stock">99 in stock</div>
+                                                    <div class="p-stock">{{$product->qty}} in stock</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Weight</td>
+                                                <td class="p-category">Weight</td>
                                                 <td>
-                                                    <div class="p-weight">0.8 kg</div>
+                                                    <div class="p-weight">{{$product->weight}} kg</div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Size</td>
+                                                <td class="p-category">Size</td>
                                                 <td>
-                                                    <div class="p-size">XL</div>
+                                                    <div class="p-size">
+                                                        @foreach(array_unique(array_column($product->productDetails->toArray(), 'size')) as $productSize)
+                                                            {{$productSize}}
+                                                        @endforeach
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Color</td>
+                                                <td class="p-category">Color</td>
                                                 <td>
-                                                    <div class="cs-color"></div>
+                                                    @foreach(array_unique(array_column($product->productDetails->toArray(), 'color')) as $productColor)
+                                                            <span class="cs-{{$productColor}}"></span>
+                                                    @endforeach
+{{--                                                    <div class="cs-color"></div>--}}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">SKU</td>
+                                                <td class="p-category">SKU</td>
                                                 <td>
-                                                    <div class="p-code">0012</div>
+                                                    <div class="p-code">{{$product->sku}}</div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -330,79 +322,60 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
-                                        <h4>3 Comments</h4>
+                                        <h4>{{count($product->productComments)}} Comments</h4>
                                         <div class="comment-option">
+                                            @foreach($product->productComments as $productComment)
                                             <div class="co-item">
                                                 <div class="avatar-pic">
-                                                    <img src="front/img/product-single/avatar-1.png" alt="">
+                                                    <img src="front/img/user/{{$productComment->user->avatar??'default-avatar.jpg'}}" alt="">
                                                 </div>
                                                 <div class="avatar-text">
                                                     <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            @if($i <= $productComment->rating)
+                                                                <i class="fa fa-star"></i>
+                                                            @else
+                                                                <i class="fa fa-star-o"></i>
+                                                            @endif
+                                                        @endfor
                                                     </div>
-                                                    <h5>Quang Du <span>17 July 2023</span></h5>
-                                                    <div class="at-reply">Nice!</div>
+                                                    <h5>{{$productComment->name}} <span>{{date('d-m-Y', strtotime($productComment->created_at))}}</span></h5>
+                                                    <div class="at-reply">{{$productComment->message}}</div>
                                                 </div>
                                             </div>
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="front/img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Kieu Pham <span>17 July 2023</span></h5>
-                                                    <div class="at-reply">Nice!</div>
-                                                </div>
-                                            </div>
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="front/img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Thao Nguyen <span>17 July 2023</span></h5>
-                                                    <div class="at-reply">Nice!</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="personal-rating">
-                                            <h5>Your Rating</h5>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         <div class="leave-comment">
                                             <h4>Leave Comment</h4>
-                                            <form action="" class="comment-form">
+                                            <form action="" method="post" class="comment-form">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id??null}}">
                                                 <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <input type="text" placeholder="Name" name="" id="">
+                                                    <div class="col-lg-12">
+                                                        <div class="personal-rating">
+                                                            <div class="rate">
+                                                                <input type="radio" id="star5" name="rating" value="5" />
+                                                                <label for="star5" title="text">5 stars</label>
+                                                                <input type="radio" id="star4" name="rating" value="4" />
+                                                                <label for="star4" title="text">4 stars</label>
+                                                                <input type="radio" id="star3" name="rating" value="3" />
+                                                                <label for="star3" title="text">3 stars</label>
+                                                                <input type="radio" id="star2" name="rating" value="2" />
+                                                                <label for="star2" title="text">2 stars</label>
+                                                                <input type="radio" id="star1" name="rating" value="1" />
+                                                                <label for="star1" title="text">1 star</label>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <input type="email" placeholder="Email" name="" id="">
+                                                        <input type="text" placeholder="Name" name="name" id="">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="email" placeholder="Email" name="email" id="">
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <textarea placeholder="Message" name="" id="" cols="30" rows="10"></textarea>
+                                                        <textarea placeholder="Message" name="message" id="" cols="30" rows="10"></textarea>
                                                         <button type="submit" class="site-btn">Send Message</button>
                                                     </div>
                                                 </div>

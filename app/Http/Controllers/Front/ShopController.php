@@ -3,11 +3,27 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Service\Product\ProductServiceInterface;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function show($id) {
-        return view('front.shop.product');
+    private $productService;
+
+    public function __construct(ProductServiceInterface $productService)
+    {
+        $this->productService = $productService;
+    }
+
+    public function show($id)
+    {
+        $product = $this->productService->find($id);
+
+        return view('front.shop.product', compact('product'));
+    }
+
+    public function postComment(Request $request)
+    {
+
     }
 }
