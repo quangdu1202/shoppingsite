@@ -32,6 +32,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Blog whereTitle($value)
  * @method static Builder|Blog whereUpdatedAt($value)
  * @method static Builder|Blog whereUserId($value)
+ * @property string $subtitle
+ * @method static Builder|Blog whereSubtitle($value)
  * @mixin \Eloquent
  */
 class Blog extends Model

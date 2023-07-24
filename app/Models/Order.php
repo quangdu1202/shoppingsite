@@ -38,6 +38,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|Order wherePostcodeZip($value)
  * @method static Builder|Order whereTownCity($value)
  * @method static Builder|Order whereUpdatedAt($value)
+ * @property string $street_address
+ * @method static Builder|Order whereStreetAddress($value)
  * @mixin \Eloquent
  */
 class Order extends Model

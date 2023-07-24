@@ -33,6 +33,9 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static Builder|ProductComment whereRating($value)
  * @method static Builder|ProductComment whereUpdatedAt($value)
  * @method static Builder|ProductComment whereUserId($value)
+ * @property string $message
+ * @property-read \App\Models\User|null $user
+ * @method static Builder|ProductComment whereMessage($value)
  * @mixin \Eloquent
  */
 class ProductComment extends Model
