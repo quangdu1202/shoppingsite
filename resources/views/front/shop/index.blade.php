@@ -148,263 +148,68 @@
                     <div class="product-show-option">
                         <div class="row">
                             <div class="col-lg-7 col-md-7">
-                                <div class="select-option">
-                                    <select class="sorting" name="" id="">
-                                        <option value="">Sort: Default</option>
-                                    </select>
-                                    <select class="p-show" name="" id="">
-                                        <option value="">Show:</option>
-                                    </select>
-                                </div>
+                                <form action="">
+                                    <div class="select-option">
+                                        <select class="sorting" name="sort" onchange="this.form.submit();" id="">
+                                            <option {{request('sort') == 'newest'?'selected':''}} value="newest">Sorting: Newest</option>
+                                            <option {{request('sort') == 'oldest'?'selected':''}} value="oldest">Sorting: Oldest</option>
+                                            <option {{request('sort') == 'price-ascending'?'selected':''}} value="price-ascending">Sorting: Price Low-High</option>
+                                            <option {{request('sort') == 'price-descending'?'selected':''}} value="price-descending">Sorting: Price High-Low</option>
+                                            <option {{request('sort') == 'name-ascending'?'selected':''}} value="name-ascending">Sorting: Name A-Z</option>
+                                            <option {{request('sort') == 'name-descending'?'selected':''}} value="name-descending">Sorting: Name Z-A</option>
+                                        </select>
+                                        <select class="p-show" name="show" onchange="this.form.submit();" id="">
+                                            <option {{request('show') == '3'?'selected':''}} value="3">Show: 3</option>
+                                            <option {{request('show') == '9'?'selected':''}} value="9">Show: 9</option>
+                                            <option {{request('show') == '15'?'selected':''}} value="15">Show: 15</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show 1-9 of 999 Products</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="product-list">
                         <div class="row">
-                            <div class="col-lg-4 col-sm-6">
+                            @foreach($products as $product)
+                                <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="front/img/products/product-1.jpg" alt="">
+                                        <img src="front/img/products/{{$product->productImages[0]->path}}" alt="">
+                                        @if($product->discount != null)
                                         <div class="sale pp-sale">Sale</div>
+                                        @endif
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
                                             <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
+                                            <li class="quick-view"><a href="shop/product/{{$product->id}}">+ Quick View</a></li>
                                             <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple</h5>
+                                        <div class="catagory-name">{{$product->tag}}</div>
+                                        <a href="shop/product/{{$product->id}}">
+                                            <h5>{{$product->name}}</h5>
                                         </a>
                                         <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
+                                            @if($product->discount != null)
+                                                {{$product->discount}}
+                                                <span>{{$product->price}}</span>
+                                            @else
+                                                {{$product->price}}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-2.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 2</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-3.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 3</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-4.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 4</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-5.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 5</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-6.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 6</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-7.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 7</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-8.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 8</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="front/img/products/product-9.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                            <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pink Pineapple 9</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $999.99
-                                            <span>$1099.99</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="loading-more">
-                        <i class="icon_loading">
-                            <a href="#">Loading More</a>
-                        </i>
-                    </div>
+                    {{$products->links()}}
                 </div>
             </div>
         </div>

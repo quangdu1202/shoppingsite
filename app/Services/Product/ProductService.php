@@ -42,4 +42,9 @@ class ProductService extends BaseService implements ProductServiceInterface
             "women" => $this->repository->getFeaturedProductsByCategory(2),
         ];
     }
+
+    public function getProductsOnIndex($request)
+    {
+        return $this->repository->getProductsOnIndex($request);
+    }
 }

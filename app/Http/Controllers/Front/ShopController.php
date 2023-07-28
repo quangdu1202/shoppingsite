@@ -33,8 +33,10 @@ class ShopController extends Controller
         return redirect()->back();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('front.shop.index');
+        $products = $this->productService->getProductsOnIndex($request);
+
+        return view('front.shop.index', compact('products'));
     }
 }

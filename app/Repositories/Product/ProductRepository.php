@@ -31,4 +31,35 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             ->where('product_category_id', $category)
             ->get();
     }
+
+    public function getProductsOnIndex($request)
+    {
+        $productsPerPage = $request->show ?? 3;
+        $sort = $request->sort ?? 'newest';
+
+        switch ($sort) {
+            case 'newest':
+                $products = $this->model->orderBy('id');
+                break;
+            case 'oldest':
+                $products = $this->model->orderByDesc('id');
+                break;
+            case 'price-ascending':
+                $products = $this->model->orderBy('price');
+                break;
+            case 'price-descending':
+                $products = $this->model->orderByDesc('price');
+                break;
+            case 'name-ascending':
+                $products = $this->model->orderBy('name');
+                break;
+            case 'name-descending':
+                $products = $this->model->orderByDesc('name');
+                break;
+            default:
+                $products = $this->model->orderBy('id');
+        }
+
+        return $products->paginate($productsPerPage)->appends(['sort' => $sort, 'show' => $productsPerPage]);
+    }
 }
