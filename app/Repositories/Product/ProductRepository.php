@@ -8,14 +8,14 @@ use App\Repositories\BaseRepository;
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
 
-    public function getModel(): string
+    public function getModel()
     {
         return Product::class;
     }
 
     public function getRelatedProducts($product)
     {
-        $relatedProducts = $this->where('product_category_id', $product->product_category_id)
+        $relatedProducts = $this->model->where('product_category_id', $product->product_category_id)
                     ->where('tag', $product->tag)
                     ->limit(4)
                     ->get();
@@ -23,5 +23,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return $relatedProducts->filter(function ($relatedProduct) use ($product) {
             return $relatedProduct->id !== $product->id;
         });
+    }
+
+    public function getFeaturedProductsByCategory(int $category)
+    {
+        return $this->model->where('featured', true)
+            ->where('product_category_id', $category)
+            ->get();
     }
 }

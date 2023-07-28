@@ -7,4 +7,5 @@ use App\Repositories\RepositoryInterface;
 interface ProductRepositoryInterface extends RepositoryInterface
 {
     public function getRelatedProducts($product);
+    public function getFeaturedProductsByCategory(int $category);
 }

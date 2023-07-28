@@ -16,18 +16,6 @@ abstract class BaseRepository implements RepositoryInterface
 
     abstract public function getModel();
 
-    public function where($column, $value)
-    {
-        $this->model = $this->model->where($column, $value);
-        return $this;
-    }
-
-    public function limit($limit)
-    {
-        $this->model = $this->model->limit($limit);
-        return $this;
-    }
-
     public function get()
     {
         return $this->model->get();
