@@ -12,4 +12,11 @@ class BlogRepository extends BaseRepository implements BlogRepositoryInterface
     {
         return Blog::class;
     }
+
+    public function getLatestBlogs()
+    {
+        return $this->model->orDerby('id', 'desc')
+                    ->limit(3)
+                    ->get();
+    }
 }

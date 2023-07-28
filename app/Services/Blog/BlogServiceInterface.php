@@ -2,7 +2,9 @@
 
 namespace App\Services\Blog;
 
-interface BlogServiceInterface
-{
+use App\Services\ServiceInterface;
 
+interface BlogServiceInterface extends ServiceInterface
+{
+    public function getLatestBlogs();
 }
