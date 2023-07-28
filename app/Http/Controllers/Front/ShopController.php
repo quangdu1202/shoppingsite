@@ -27,9 +27,14 @@ class ShopController extends Controller
         return view('front.shop.product', compact('product', 'relatedProducts'));
     }
 
-    public function postComment(Request $request): RedirectResponse
+    public function postComment(Request $request)
     {
         $this->productCommentService->create($request->all());
         return redirect()->back();
+    }
+
+    public function index()
+    {
+        return view('front.shop.index');
     }
 }

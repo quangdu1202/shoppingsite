@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="front/img/logo.png" height="25" alt="">
                         </a>
                     </div>
@@ -161,8 +161,8 @@
             </div>
             <nav class="nav-menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
+                    <li class="{{(request()->segment(1)=='')?'active':''}}"><a href="/">Home</a></li>
+                    <li class="{{(request()->segment(1)=='shop')?'active':''}}"><a href="/shop">Shop</a></li>
                     <li><a href="">Collection</a>
                         <ul class="dropdown">
                             <li><a href="">Men's</a></li>
@@ -234,7 +234,7 @@
             <div class="col-lg-3">
                 <div class="footer-left">
                     <div class="footer-logo">
-                        <a href="index.html">
+                        <a href="/">
                             <img src="front/img/_footer-logo.png" height="25" alt="">
                         </a>
                     </div>
