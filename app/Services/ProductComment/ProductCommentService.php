@@ -2,6 +2,7 @@
 
 namespace App\Services\ProductComment;
 
+use App\Repositories\ProductComment\ProductCategoryRepositoryInterface;
 use App\Repositories\ProductComment\ProductCommentRepositoryInterface;
 use App\Services\BaseService;
 

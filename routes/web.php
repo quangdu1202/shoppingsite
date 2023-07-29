@@ -29,4 +29,5 @@ Route::prefix('shop')->group(function () {
     Route::get('product/{id}', [Front\ShopController::class,'show']);
     Route::post('product/{id}', [Front\ShopController::class,'postComment']);
     Route::get('', [Front\ShopController::class,'index']);
+    Route::get('/category/{categoryName}', [Front\ShopController::class,'category']);
 });

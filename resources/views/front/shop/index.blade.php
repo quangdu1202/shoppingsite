@@ -26,9 +26,9 @@
                     <div class="filter-widget">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-categories">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
+                            @foreach($categories as $category)
+                            <li class=""><a class="{{Request::is('shop/category/'.$category->name) ? 'active' : ''}}" href="/shop/category/{{$category->name}}">{{$category->name}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="filter-widget">
@@ -197,10 +197,10 @@
                                         </a>
                                         <div class="product-price">
                                             @if($product->discount != null)
-                                                {{$product->discount}}
-                                                <span>{{$product->price}}</span>
+                                                ${{$product->discount}}
+                                                <span>${{$product->price}}</span>
                                             @else
-                                                {{$product->price}}
+                                                ${{$product->price}}
                                             @endif
                                         </div>
                                     </div>

@@ -1739,6 +1739,12 @@ ol {
 	line-height: 39px;
 }
 
+.filter-widget .filter-categories li a:hover,
+.filter-widget .filter-categories li a.active {
+    color: #e73c3c;
+    font-weight: bold; /* in đậm chữ khi hover hoặc được chọn */
+}
+
 .filter-widget .fw-brand-check .bc-item {
 	margin-bottom: 3px;
 }
@@ -1747,6 +1753,11 @@ ol {
 	position: relative;
 	cursor: pointer;
 	padding-left: 28px;
+}
+
+.filter-widget .fw-brand-check .bc-item label:hover {
+    color: #e73c3c;
+    font-weight: bold;
 }
 
 .filter-widget .fw-brand-check .bc-item label input {

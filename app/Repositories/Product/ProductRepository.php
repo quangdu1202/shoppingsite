@@ -3,7 +3,9 @@
 namespace App\Repositories\Product;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Repositories\BaseRepository;
+use Illuminate\Http\Request;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
@@ -34,11 +36,23 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function getProductsOnIndex($request)
     {
-        $productsPerPage = $request->show ?? 9;
-        $sort = $request->sort ?? 'newest';
         $search = $request->search ?? '';
         $products = $this->model->where('name', 'like', '%'.$search.'%');
 
+        return $this->sortAndPagination($products, $request);
+    }
+
+    public function getProductsByCategory($categoryName, $request)
+    {
+        $products = ProductCategory::where('name', $categoryName)->first()->products->toQuery();
+
+        return $this->sortAndPagination($products, $request);
+    }
+
+    private function sortAndPagination($products, Request $request)
+    {
+        $productsPerPage = $request->show ?? 9;
+        $sort = $request->sort ?? 'newest';
         switch ($sort) {
             case 'newest':
                 $products = $products->orderBy('id');
@@ -61,7 +75,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             default:
                 $products = $products->orderBy('id');
         }
-
         return $products->paginate($productsPerPage)->appends(['sort' => $sort, 'show' => $productsPerPage]);
     }
 }
