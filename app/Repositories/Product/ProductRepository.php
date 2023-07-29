@@ -97,20 +97,28 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         //Lọc theo giá giảm (Discount) nếu có, không thì lọc theo giá gốc
         $products = ($priceMin != null && $priceMax != null)
-            ? $products->where(function ($query) use ($priceMin, $priceMax) {
-                $query->whereBetween('Discount', [$priceMin, $priceMax])
-                    ->orWhere(function ($query) use ($priceMin, $priceMax) {
-                        $query->where('Discount', '=', null)
-                            ->whereBetween('price', [$priceMin, $priceMax]);
+                    ? $products->where(function ($query) use ($priceMin, $priceMax) {
+                        $query->whereBetween('Discount', [$priceMin, $priceMax])
+                            ->orWhere(function ($query) use ($priceMin, $priceMax) {
+                                $query->where('Discount', '=', null)
+                                    ->whereBetween('price', [$priceMin, $priceMax]);
+                            });
+                    })
+                    : $products->where(function ($query) use ($priceMin, $priceMax) {
+                        $query->where('Discount', '>=', $priceMin)
+                            ->orWhere(function ($query) use ($priceMin, $priceMax) {
+                                $query->where('Discount', '=', null)
+                                    ->where('price', '>=', $priceMin);
+                            });
                     });
-            })
-            : $products->where(function ($query) use ($priceMin, $priceMax) {
-                $query->where('Discount', '>=', $priceMin)
-                    ->orWhere(function ($query) use ($priceMin, $priceMax) {
-                        $query->where('Discount', '=', null)
-                            ->where('price', '>=', $priceMin);
-                    });
-            });
+
+        //Color
+        $color = $request->color;
+        $products = $color != null
+                    ? $products->whereHas('productDetails', function ($query) use ($color) {
+                        return $query->where('color', $color)->where('qty', '>', '0');
+                    })
+                    : $products;
 
         return $products = $brand_ids != null ? $products->whereIn('brand_id', $brand_ids) : $products;
     }
