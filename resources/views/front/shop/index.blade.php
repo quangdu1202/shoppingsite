@@ -159,8 +159,8 @@
                                             <option {{request('sort') == 'name-descending'?'selected':''}} value="name-descending">Sorting: Name Z-A</option>
                                         </select>
                                         <select class="p-show" name="show" onchange="this.form.submit();" id="">
-                                            <option {{request('show') == '3'?'selected':''}} value="3">Show: 3</option>
                                             <option {{request('show') == '9'?'selected':''}} value="9">Show: 9</option>
+                                            <option {{request('show') == '3'?'selected':''}} value="3">Show: 3</option>
                                             <option {{request('show') == '15'?'selected':''}} value="15">Show: 15</option>
                                         </select>
                                     </div>
