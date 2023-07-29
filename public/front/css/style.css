@@ -1889,6 +1889,26 @@ ol {
 	color: #636363;
 }
 
+.filter-widget .fw-color-choose .cs-item label.cs-violet.active {
+    color: #8230E3;
+}
+
+.filter-widget .fw-color-choose .cs-item label.cs-blue.active {
+    color: #2773BE;
+}
+
+.filter-widget .fw-color-choose .cs-item label.cs-yellow.active {
+    color: #d5d519;
+}
+
+.filter-widget .fw-color-choose .cs-item label.cs-red.active {
+    color: #DC3232;
+}
+
+.filter-widget .fw-color-choose .cs-item label.cs-green.active {
+    color: #81D742;
+}
+
 .filter-widget .fw-color-choose .cs-item label.cs-violet:before {
 	background: #8230E3;
 }
