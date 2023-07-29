@@ -38,6 +38,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         $search = $request->search ?? '';
         $products = $this->model->where('name', 'like', '%'.$search.'%');
+        $products = $this->filter($products, $request);
 
         return $this->sortAndPagination($products, $request);
     }
@@ -45,6 +46,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function getProductsByCategory($categoryName, $request)
     {
         $products = ProductCategory::where('name', $categoryName)->first()->products->toQuery();
+        $products = $this->filter($products, $request);
 
         return $this->sortAndPagination($products, $request);
     }
@@ -76,5 +78,40 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                 $products = $products->orderBy('id');
         }
         return $products->paginate($productsPerPage)->appends(['sort' => $sort, 'show' => $productsPerPage]);
+    }
+
+    public function filter($products, Request $request)
+    {
+        //Brands
+        $brands = $request->brand ?? [];
+        $brand_ids = array_keys($brands);
+
+        //Price
+        $priceMin = $request->price_min;
+        $priceMax = $request->price_max;
+
+        $priceMin = str_replace('$', '', $priceMin);
+        $priceMax = str_replace('$', '', $priceMax);
+
+//        $products = ($priceMin != null && $priceMax != null) ? $products->whereBetween('price', [$priceMin, $priceMax]) : $products;
+
+        //Lọc theo giá giảm (Discount) nếu có, không thì lọc theo giá gốc
+        $products = ($priceMin != null && $priceMax != null)
+            ? $products->where(function ($query) use ($priceMin, $priceMax) {
+                $query->whereBetween('Discount', [$priceMin, $priceMax])
+                    ->orWhere(function ($query) use ($priceMin, $priceMax) {
+                        $query->where('Discount', '=', null)
+                            ->whereBetween('price', [$priceMin, $priceMax]);
+                    });
+            })
+            : $products->where(function ($query) use ($priceMin, $priceMax) {
+                $query->where('Discount', '>=', $priceMin)
+                    ->orWhere(function ($query) use ($priceMin, $priceMax) {
+                        $query->where('Discount', '=', null)
+                            ->where('price', '>=', $priceMin);
+                    });
+            });
+
+        return $products = $brand_ids != null ? $products->whereIn('brand_id', $brand_ids) : $products;
     }
 }

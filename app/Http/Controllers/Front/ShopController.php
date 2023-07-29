@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Services\Brand\BrandServiceInterface;
 use App\Services\Product\ProductServiceInterface;
 use App\Services\ProductCategory\ProductCategoryServiceInterface;
 use App\Services\ProductComment\ProductCommentServiceInterface;
@@ -14,14 +15,17 @@ class ShopController extends Controller
     private $productService;
     private $productCommentService;
     private $produdctCategoryService;
+    private $brandService;
 
     public function __construct(ProductServiceInterface $productService,
                                 ProductCommentServiceInterface $productCommentService,
-                                ProductCategoryServiceInterface $produdctCategoryService)
+                                ProductCategoryServiceInterface $produdctCategoryService,
+                                BrandServiceInterface $brandService)
     {
         $this->productService = $productService;
         $this->productCommentService = $productCommentService;
         $this->produdctCategoryService = $produdctCategoryService;
+        $this->brandService = $brandService;
     }
 
     public function show($id)
@@ -41,16 +45,17 @@ class ShopController extends Controller
     public function index(Request $request)
     {
         $categories = $this->produdctCategoryService->all();
-
+        $brands = $this->brandService->all();
         $products = $this->productService->getProductsOnIndex($request);
 
-        return view('front.shop.index', compact('products', 'categories'));
+        return view('front.shop.index', compact('products', 'categories', 'brands'));
     }
 
     public function category($categoryName, Request $request)
     {
         $categories = $this->produdctCategoryService->all();
+        $brands = $this->brandService->all();
         $products = $this->productService->getProductsByCategory($categoryName ,$request);
-        return view('front.shop.index', compact('products', 'categories'));
+        return view('front.shop.index', compact('products', 'categories', 'brands'));
     }
 }

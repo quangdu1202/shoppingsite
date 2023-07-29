@@ -2,7 +2,9 @@
 
 namespace App\Services\Brand;
 
-interface BrandServiceInterface
+use App\Services\ServiceInterface;
+
+interface BrandServiceInterface extends ServiceInterface
 {
 
 }

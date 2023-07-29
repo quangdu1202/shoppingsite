@@ -2,7 +2,14 @@
 
 namespace App\Repositories\Brand;
 
-class BrandRepository
+use App\Models\Brand;
+use App\Repositories\BaseRepository;
+
+class BrandRepository extends BaseRepository implements BrandRepositoryInterface
 {
 
+    public function getModel()
+    {
+        return Brand::class;
+    }
 }

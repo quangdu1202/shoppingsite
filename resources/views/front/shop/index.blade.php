@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="index.html"><i class="fa fa-home"></i> Home</a>
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
                         <span>Shop</span>
                     </div>
                 </div>
@@ -23,7 +23,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 products-sidebar-filter">
-                    <div class="filter-widget">
+                    <form action="">
+                    <div class="filter-widget" id="category-filter">
                         <h4 class="fw-title">Categories</h4>
                         <ul class="filter-categories">
                             @foreach($categories as $category)
@@ -31,82 +32,70 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div class="filter-widget">
+                    <div class="filter-widget" id="brand-filter">
                         <h4 class="fw-title">Brands</h4>
                         <div class="fw-brand-check">
+                            @foreach($brands as $brand)
                             <div class="bc-item">
-                                <label for="bc-calvin">
-                                    Calvin Klein
-                                    <input type="checkbox" id="bc-calvin">
+                                <label for="bc-{{$brand->id}}">
+                                    {{$brand->name}}
+                                    <input type="checkbox"
+                                           onchange="this.form.submit();"
+                                           {{(request("brand")[$brand->id] ?? '') == 'on' ? 'checked' : ''}}
+                                           id="bc-{{$brand->id}}"
+                                           name="brand[{{$brand->id}}]">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <div class="bc-item">
-                                <label for="bc-op2">
-                                    Option 2
-                                    <input type="checkbox" id="bc-op2">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-op3">
-                                    Option 3
-                                    <input type="checkbox" id="bc-op3">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-op4">
-                                    Option 4
-                                    <input type="checkbox" id="bc-op4">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="filter-widget">
+                    <div class="filter-widget" id="price-filter">
                         <h4 class="fw-title">Price</h4>
                         <div class="filter-range-wrap">
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
+                                    <input type="text" id="min-amount" name="price_min">
+                                    <input type="text" id="max-amount" name="price_max">
                                 </div>
-                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-min="99" data-max="1999">
+                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                     data-min="0" data-max="1999"
+                                     data-min-value="{{str_replace('$', '', request('price_min'))}}"
+                                     data-max-value="{{str_replace('$', '', request('price_max'))}}">
                                     <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                     <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                     <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="filter-btn">Filter</a>
+                        <button  type="submit" class="filter-btn">Filter</button>
                     </div>
-                    <div class="filter-widget">
+                    <div class="filter-widget" id="color-filter">
                         <h4 class="fw-title">Color</h4>
                         <div class="fw-color-choose">
                             <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label for="cs-black" class="cs-black">Black</label>
+                                <input type="radio" id="cs-black" name="color" value="black" onchange="this.form.submit()" {{request('color') == 'black' ? 'checked' : ''}}>
+                                <label for="cs-black" class="cs-black {{request('color') == 'black' ? 'font-weight-bold active' : ''}}">Black</label>
                             </div>
                             <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label for="cs-blue" class="cs-blue">Blue</label>
+                                <input type="radio" id="cs-blue" name="color" value="blue" onchange="this.form.submit()" {{request('color') == 'blue' ? 'checked' : ''}}>
+                                <label for="cs-blue" class="cs-blue {{request('color') == 'blue' ? 'font-weight-bold active' : ''}}">Blue</label>
                             </div>
                             <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label for="cs-green" class="cs-green">Green</label>
+                                <input type="radio" id="cs-green" name="color" value="green" onchange="this.form.submit()" {{request('color') == 'green' ? 'checked' : ''}}>
+                                <label for="cs-green" class="cs-green {{request('color') == 'green' ? 'font-weight-bold active' : ''}}">Green</label>
                             </div>
                             <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label for="cs-red" class="cs-red">Red</label>
+                                <input type="radio" id="cs-red" name="color" value="red" onchange="this.form.submit()" {{request('color') == 'red' ? 'checked' : ''}}>
+                                <label for="cs-red" class="cs-red {{request('color') == 'red' ? 'font-weight-bold active' : ''}}">Red</label>
                             </div>
                             <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label for="cs-violet" class="cs-violet">Violet</label>
+                                <input type="radio" id="cs-violet" name="color" value="violet" onchange="this.form.submit()" {{request('color') == 'violet' ? 'checked' : ''}}>
+                                <label for="cs-violet" class="cs-violet {{request('color') == 'violet' ? 'font-weight-bold active' : ''}}">Violet</label>
                             </div>
                             <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label for="cs-yellow" class="cs-yellow">Yellow</label>
+                                <input type="radio" id="cs-yellow" name="color" value="yellow" onchange="this.form.submit()" {{request('color') == 'yellow' ? 'checked' : ''}}>
+                                <label for="cs-yellow" class="cs-yellow {{request('color') == 'yellow' ? 'font-weight-bold active' : ''}}">Yellow</label>
                             </div>
                         </div>
                     </div>
@@ -143,6 +132,7 @@
                             <a href="#">Backpack</a>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="product-show-option">
