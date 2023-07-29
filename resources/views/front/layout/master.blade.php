@@ -92,52 +92,42 @@
                             </a>
                         </li>
                         <li class="cart-icon">
-                            <a href="#">
+                            <a href="/cart">
                                 <i class="icon_bag_alt"></i>
-                                <span>3</span>
+                                <span>{{Cart::count()}}</span>
                             </a>
                             <div class="cart-hover">
                                 <div class="select-items">
                                     <table>
                                         <tbody>
+                                        @foreach(Cart::content() as $cartItem)
                                         <tr>
-                                            <td class="si-pic"><img src="front/img/select-product-1.jpg" alt=""></td>
+                                            <td class="si-pic"><img style="height: 70px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path}}" alt=""></td>
                                             <td class="si-text">
                                                 <div class="product-selected">
-                                                    <p>$99.00 x 1</p>
-                                                    <h6>Kabino Beside Table</h6>
+                                                    <p>${{$cartItem->price}} x {{$cartItem->qty}}</p>
+                                                    <h6>{{$cartItem->name}}</h6>
                                                 </div>
                                             </td>
                                             <td class="si-close">
                                                 <i class="ti-close"></i>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="si-pic"><img src="front/img/select-product-1.jpg" alt=""></td>
-                                            <td class="si-text">
-                                                <div class="product-selected">
-                                                    <p>$99.00 x 1</p>
-                                                    <h6>Kabino Beside Table</h6>
-                                                </div>
-                                            </td>
-                                            <td class="si-close">
-                                                <i class="ti-close"></i>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="select-total">
                                     <span>Total: </span>
-                                    <h5>$198.00</h5>
+                                    <h5>${{Cart::total()}}</h5>
                                 </div>
                                 <div class="select-button">
-                                    <a href="shopping-cart.html" class="primary-btn view-cart">VIEW CART</a>
+                                    <a href="/cart" class="primary-btn view-cart">VIEW CART</a>
                                     <a href="check-out.html" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
                         </li>
-                        <li class="cart-price">$999.00</li>
+                        <li class="cart-price">${{Cart::total()}}</li>
                     </ul>
                 </div>
             </div>
@@ -178,7 +168,7 @@
                     <li><a href="">Pages</a>
                         <ul class="dropdown">
                             <li><a href="blog-details.html">Blog Details</a></li>
-                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                            <li><a href="/cart">Shopping Cart</a></li>
                             <li><a href="check-out.html">Checkout</a></li>
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="register.html">Register</a></li>
