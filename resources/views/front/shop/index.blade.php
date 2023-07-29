@@ -99,24 +99,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="filter-widget">
+                    <div class="filter-widget" id="size-filter">
                         <h4 class="fw-title">Size</h4>
                         <div class="fw-size-choose">
                             <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">S</label>
+                                <input type="radio" id="s-size" name="size" value="s" onchange="this.form.submit()" {{request('size') == 's' ? 'checked' : ''}}>
+                                <label for="s-size" class="{{request('size') == 's' ? 'active' : ''}}">S</label>
                             </div>
                             <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">M</label>
+                                <input type="radio" id="m-size" name="size" value="m" onchange="this.form.submit()" {{request('size') == 'm' ? 'checked' : ''}}>
+                                <label for="m-size" class="{{request('size') == 'm' ? 'active' : ''}}">M</label>
                             </div>
                             <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">L</label>
+                                <input type="radio" id="l-size" name="size" value="l" onchange="this.form.submit()" {{request('size') == 'l' ? 'checked' : ''}}>
+                                <label for="l-size" class="{{request('size') == 'l' ? 'active' : ''}}">L</label>
                             </div>
                             <div class="sc-item">
-                                <input type="radio" id="xl-size">
-                                <label for="xl-size">XL</label>
+                                <input type="radio" id="xl-size" name="size" value="xl" onchange="this.form.submit()" {{request('size') == 'xl' ? 'checked' : ''}}>
+                                <label for="xl-size" class="{{request('size') == 'xl' ? 'active' : ''}}">XL</label>
                             </div>
                         </div>
                     </div>
