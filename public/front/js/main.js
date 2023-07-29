@@ -322,7 +322,7 @@ function addToCart(productId) {
                     '</tr>';
                 cartHover_tbody.append(newItem);
             }
-            alert('Add successful! \n Product: ' + response['cartItem'].name);
+            alert('Add successful!\nProduct: ' + response['cartItem'].name);
             console.log(response);
         },
         error: function (response) {
