@@ -30,10 +30,12 @@ class ShopController extends Controller
 
     public function show($id)
     {
+        $categories = $this->produdctCategoryService->all();
+        $brands = $this->brandService->all();
         $product = $this->productService->find($id);
         $relatedProducts = $this->productService->getRelatedProducts($product);
 
-        return view('front.shop.product', compact('product', 'relatedProducts'));
+        return view('front.shop.product', compact('product', 'relatedProducts', 'categories', 'brands'));
     }
 
     public function postComment(Request $request)

@@ -122,7 +122,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         //Size
         $size = $request->size;
-        $products = $size != nul
+        $products = $size != null
                     ? $products->whereHas('productDetails', function ($query) use ($size) {
                         return $query->where('size', $size)->where('qty', '>', '0');
                     })
