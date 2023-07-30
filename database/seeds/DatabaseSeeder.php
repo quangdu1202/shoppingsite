@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'quangm202@gmail.com',
                 'password' => Hash::make('123456'),
                 'avatar' => null,
-                'level' => 0,
+                'level' => 2,
                 'description' => null,
                 'company_name' => null,
                 'country' => 'Vietnam',

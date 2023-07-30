@@ -72,26 +72,26 @@ class Product extends Model
 
     public function productCategory(): BelongsTo
     {
-        return $this->belongsTo(productCategory::class,'product_category_id','id');
+        return $this->belongsTo(ProductCategory::class,'product_category_id','id');
     }
 
     public function productImages(): HasMany
     {
-        return $this->hasMany(productImage::class,'product_id','id');
+        return $this->hasMany(ProductImage::class,'product_id','id');
     }
 
     public function productDetails(): HasMany
     {
-        return $this->hasMany(productDetail::class,'product_id','id');
+        return $this->hasMany(ProductDetail::class,'product_id','id');
     }
 
     public function productComments(): HasMany
     {
-        return $this->hasMany(productComment::class,'product_id','id');
+        return $this->hasMany(ProductComment::class,'product_id','id');
     }
 
     public function orderDetails(): HasMany
     {
-        return $this->hasMany(orderDetail::class,'product_id','id');
+        return $this->hasMany(OrderDetail::class,'product_id','id');
     }
 }
