@@ -8,6 +8,7 @@ use App\Services\OrderDetail\OrderDetailServiceInterface;
 use App\Utilities\VNPay;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -48,6 +49,11 @@ class CheckoutController extends Controller
         }
 
         if($request->payment_type == 'cod') {
+            //*Gửi email
+            $subtotal = Cart::subtotal();
+            $total = Cart::total();
+
+            $this->sendEMail($order, $subtotal, $total);
             //3. Xoá giỏ hàng
             Cart::destroy();
 
@@ -75,6 +81,12 @@ class CheckoutController extends Controller
         //2. Kiểm tra data, kết quả giao dịch trả về hợp lệ
         if($vnp_ResponseCode != null) {
             if($vnp_ResponseCode == 00) { //Thành công
+                //*Gửi email
+                $order = $this->orderService->find($vnp_TxnRef);
+                $subtotal = Cart::subtotal();
+                $total = Cart::total();
+
+                $this->sendEMail($order, $subtotal, $total);
                 //Xoá giỏ hàng
                     Cart::destroy();
                 //Trả về kết quả
@@ -92,5 +104,17 @@ class CheckoutController extends Controller
     {
         $notification = session('notification');
         return view('front.checkout.result', compact('notification'));
+    }
+
+    private function sendEMail($order, $subtotal, $total)
+    {
+        $email_to = $order->email;
+        Mail::send('front.checkout.email',
+            compact('order', 'subtotal', 'total'),
+            function ($message) use ($email_to){
+                $message->from('quangm202.java@gmail.com', 'QuangDu/Nhom4');
+                $message->to($email_to, $email_to);
+                $message->subject('Order Confirmation');
+        });
     }
 }
