@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="select-button">
                                     <a href="/cart" class="primary-btn view-cart">VIEW CART</a>
-                                    <a href="check-out.html" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    <a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
                         </li>
@@ -169,7 +169,7 @@
                         <ul class="dropdown">
                             <li><a href="blog-details.html">Blog Details</a></li>
                             <li><a href="/cart">Shopping Cart</a></li>
-                            <li><a href="check-out.html">Checkout</a></li>
+                            <li><a href="/checkout">Checkout</a></li>
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="register.html">Register</a></li>
                             <li><a href="login.html">Login</a></li>
