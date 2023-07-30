@@ -47,7 +47,8 @@ class AccountController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user, $request->remember);
-            return redirect('');
+            return redirect()->intended(''); //Mặc định là trang chủ
+//            return redirect('');
         } else {
             return back()->with('notification', 'Login failed. Check your entered information!');
 //            return back()->with('notification', 'Đăng nhập không thành công, vui lòng kiểm tra lại thông tin đã nhập!');
