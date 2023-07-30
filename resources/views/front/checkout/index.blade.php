@@ -22,46 +22,47 @@
     <!-- Checkout Section begin -->
     <div class="checkout-section spad">
         <div class="container">
-            <form action="#" class="checkout-form">
+            <form action="" method="post" class="checkout-form">
+                @csrf
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout-content">
-                            <a href="login.html" class="content-btn">Click Here To Login</a>
+                            <a href="/login" class="content-btn">Click Here To Login</a>
                         </div>
                         <h4>Billing Details</h4>
                         <div class="row">
                             <div class="col-lg-6">
                                 <label for="fname">First Name <span>*</span></label>
-                                <input type="text" name="" id="fname">
+                                <input type="text" name="fname" id="fname">
                             </div>
                             <div class="col-lg-6">
                                 <label for="lname">Last Name <span>*</span></label>
-                                <input type="text" name="" id="lname">
+                                <input type="text" name="lname" id="lname">
                             </div>
                             <div class="col-lg-12">
                                 <label for="cpnname">Company Name</label>
-                                <input type="text" name="" id="cpnname">
+                                <input type="text" name="cpnname" id="cpnname">
                             </div>
                             <div class="col-lg-12">
                                 <label for="ctr">Country <span>*</span></label>
-                                <input type="text" name="" id="ctr">
+                                <input type="text" name="ctr" id="ctr">
                             </div>
                             <div class="col-lg-12">
                                 <label for="str">Street Address <span>*</span></label>
-                                <input type="text" name="" id="str" class="street-first">
+                                <input type="text" name="str" id="str" class="street-first">
                                 <input type="text" name="" id="">
                             </div>
                             <div class="col-lg-12">
                                 <label for="town">Town / City <span>*</span></label>
-                                <input type="text" name="" id="town">
+                                <input type="text" name="town" id="town">
                             </div>
                             <div class="col-lg-6">
                                 <label for="email">Email <span>*</span></label>
-                                <input type="text" name="" id="email">
+                                <input type="text" name="email" id="email">
                             </div>
                             <div class="col-lg-6">
                                 <label for="phone">Phone Number <span>*</span></label>
-                                <input type="text" name="" id="phone">
+                                <input type="text" name="phone" id="phone">
                             </div>
                             <div class="col-lg-12">
                                 <div class="create-item">
@@ -98,14 +99,14 @@
                                     <div class="pc-item">
                                         <label for="pc-cod">
                                             Cash On Delivery
-                                            <input type="checkbox" name="" id="pc-cod">
+                                            <input type="radio" name="payment_type" value="cod" id="pc-cod" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="pc-item">
                                         <label for="pc-paypal">
                                             Paypal
-                                            <input type="checkbox" name="" id="pc-paypal">
+                                            <input type="radio" name="payment_type" value="paypal" id="pc-paypal">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
