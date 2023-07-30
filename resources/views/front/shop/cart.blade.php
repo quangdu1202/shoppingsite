@@ -23,6 +23,7 @@
     <div class="shopping-cart spad">
         <div class="container">
             <div class="row">
+                @if(Cart::count() > 0)
                 <div class="col-lg-12">
                     <div class="cart-table">
                         <table>
@@ -33,12 +34,12 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                    <th>REMOVE</i></th>
+                                    <th style="background: #ff8080; cursor: pointer" onclick="confirm('Are you sure to remove all the items in the cart?') === true ? destroyCart() : ''">CLEAR</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($cartItems as $cartItem)
-                                <tr>
+                                <tr data-rowId="{{$cartItem->rowId}}">
                                     <td class="cart-pic first-row"><img style="height: 170px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path}}" alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>{{$cartItem->name}}</h5>
@@ -52,7 +53,9 @@
                                         </div>
                                     </td>
                                     <td class="total-price first-row">${{number_format($cartItem->price * $cartItem->qty, 2)}}</td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                    <td class="close-td first-row">
+                                        <i onclick="removeCartItem('{{$cartItem->rowId}}')" class="ti-close"></i>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -90,6 +93,11 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <div class="col-lg-12">
+                    <h4>Nothing here… Why not <a style="" href="/shop">check some out</a>!</h4>
+                </div>
+                @endif
             </div>
         </div>
     </div>

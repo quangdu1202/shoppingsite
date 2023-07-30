@@ -48,4 +48,22 @@ class CartController extends Controller
         }
         return back();
     }
+
+    public function delete(Request $request)
+    {
+        if($request->ajax()) {
+            $response['cartItem'] = Cart::remove($request->rowId);
+
+            $response['count']  = Cart::count();
+            $response['total'] = Cart::total();
+            $response['subtotal'] = Cart::subtotal();
+
+            return $response;
+        }
+        return back();
+    }
+
+    public function destroy() {
+        Cart::destroy();
+    }
 }

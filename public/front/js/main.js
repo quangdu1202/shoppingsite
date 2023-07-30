@@ -304,9 +304,10 @@ function addToCart(productId) {
             var cartHover_existingItems = cartHover_tbody.find("tr" + "[data-rowId='" + response['cartItem'].rowId + "']");
 
             if(cartHover_existingItems.length) {
-                cartHover_existingItems.find('.in-cart-details').text('$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty);
                 console.log("found existing item");
+                cartHover_existingItems.find('.in-cart-details').text('$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty);
             }else {
+                console.log("found new item");
                 var newItem =
                     '<tr data-rowId="' + response['cartItem'].rowId + '">\n' +
                     '    <td class="si-pic"><img style="height: 70px; margin: auto" src="front/img/products/' + response['cartItem'].options.images[0].path + '" alt=""></td>\n' +
@@ -317,7 +318,7 @@ function addToCart(productId) {
                     '        </div>\n' +
                     '    </td>\n' +
                     '    <td class="si-close">\n' +
-                    '        <i class="ti-close"></i>\n' +
+                    '        <i onclick="removeCartItem(\'' + response['cartItem'].rowId + '\')" class="ti-close"></i>\n' +
                     '    </td>\n' +
                     '</tr>';
                 cartHover_tbody.append(newItem);
@@ -332,3 +333,66 @@ function addToCart(productId) {
     });
 }
 
+function removeCartItem(rowId) {
+    $.ajax({
+        type: "GET",
+        url: "cart/delete",
+        data: {rowId: rowId},
+        success: function (response) {
+            //Mini cart
+            $('.cart-count').text(response['count']);
+            $('.cart-price').text('$' + response['total']);
+            $('.select-total h5').text('$' + response['total']);
+
+            var cartHover_tbody = $('.select-items tbody');
+            var cartHover_existingItems = cartHover_tbody.find("tr" + "[data-rowId='" + rowId + "']");
+
+            cartHover_existingItems.remove();
+
+            //Main cart
+            var cart_tbody = $('.cart-table tbody');
+            var cart_existingItem = cart_tbody.find("tr" + "[data-rowId='" + rowId + "']")
+            cart_existingItem.remove();
+
+            alert('Remove successful!\nRowID: ' + rowId);
+            console.log('Removed item');
+            console.log(response);
+        },
+        error: function (response) {
+            alert('Remove Failed!');
+            console.log(response);
+        }
+    });
+}
+
+function destroyCart() {
+    $.ajax({
+        type: "GET",
+        url: "cart/destroy",
+        data: {},
+        success: function (response) {
+            //Mini cart
+            $('.cart-count').text('0');
+            $('.cart-price').text('0');
+            $('.select-total h5').text('0');
+
+            var cartHover_tbody = $('.select-items tbody');
+            cartHover_tbody.children().remove();
+
+            //Main cart
+            var cart_tbody = $('.cart-table tbody');
+            cart_tbody.children().remove();
+
+            $('.subtotal span').text('0');
+            $('.cart-total span').text('0');
+
+            alert('Destroyed cart successfully!');
+            console.log('Destroyed cart');
+            console.log(response);
+        },
+        error: function (response) {
+            alert('Destroy Failed!');
+            console.log(response);
+        }
+    });
+}
