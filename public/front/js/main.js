@@ -238,19 +238,23 @@
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
     proQty.on('click', '.qtybtn', function () {
-    var $button = $(this);
-    var oldValue = $button.parent().find('input').val();
-    if ($button.hasClass('inc')) {
-        var newVal = parseFloat(oldValue) + 1;
-    } else {
-        // Don't allow decrementing below zero
-        if (oldValue > 0) {
-            var newVal = parseFloat(oldValue) - 1;
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
         } else {
-            newVal = 0;
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
         }
-    }
-    $button.parent().find('input').val(newVal);
+        $button.parent().find('input').val(newVal);
+
+        //Update cart
+        var rowId = $button.parent().find('input').data('rowid');
+        updateCart(rowId, newVal);
     });
 
     /*-------------------
@@ -392,6 +396,50 @@ function destroyCart() {
         },
         error: function (response) {
             alert('Destroy Failed!');
+            console.log(response);
+        }
+    });
+}
+
+function updateCart(rowId, qty) {
+    $.ajax({
+        type: "GET",
+        url: "cart/update",
+        data: {rowId: rowId, qty: qty},
+
+        success: function (response) {
+            //Mini cart
+            $('.cart-count').text(response['count']);
+            $('.cart-price').text('$' + response['total']);
+            $('.select-total h5').text('$' + response['total']);
+
+            var cartHover_tbody = $('.select-items tbody');
+            var cartHover_existingItems = cartHover_tbody.find("tr" + "[data-rowId='" + rowId + "']");
+            if (qty === 0) {
+                cartHover_existingItems.remove();
+            }else {
+                cartHover_existingItems.find('.in-cart-details').text('$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty)
+            }
+
+            //Main cart
+            var cart_tbody = $('.cart-table tbody');
+            var cart_existingItems = cart_tbody.find("tr" + "[data-rowId='" + rowId + "']");
+
+            if (qty === 0) {
+                cart_existingItems.remove();
+            }else {
+                cart_existingItems.find('.total-price').text('$' + (response['cartItem'].price * response['cartItem'].qty).toFixed(2));
+            }
+
+            $('.subtotal span').text('$' + response['subtotal']);
+            $('.cart-total span').text('$' + response['total']);
+
+            // alert('Update cart successfully!');
+            console.log('Updated cart');
+            console.log(response);
+        },
+        error: function (response) {
+            alert('Update Failed!');
             console.log(response);
         }
     });

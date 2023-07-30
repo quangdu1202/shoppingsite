@@ -39,7 +39,7 @@
                             </thead>
                             <tbody>
                             @foreach($cartItems as $cartItem)
-                                <tr data-rowId="{{$cartItem->rowId}}">
+                                <tr data-rowid="{{$cartItem->rowId}}">
                                     <td class="cart-pic first-row"><img style="height: 170px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path}}" alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>{{$cartItem->name}}</h5>
@@ -48,7 +48,7 @@
                                     <td class="qua-col first-row">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="{{$cartItem->qty}}" name="" id="">
+                                                <input type="text" value="{{$cartItem->qty}}" data-rowid="{{$cartItem->rowId}}" name="" id="">
                                             </div>
                                         </div>
                                     </td>
@@ -65,7 +65,7 @@
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <a href="/shop" class="primary-btn continue-shop">Continue Shopping</a>
-                                <a href="" class="primary-btn up-cart">Update Cart</a>
+                                <a href="/cart" class="primary-btn up-cart">Update Cart</a>
                             </div>
                             <div class="discount-coupon">
                                 <h6>Discount Code</h6>
