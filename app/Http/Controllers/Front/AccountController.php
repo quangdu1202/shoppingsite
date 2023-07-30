@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\User\UserServiceInterface;
+use App\Utilities\Constant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -38,7 +39,7 @@ class AccountController extends Controller
 
 
         $user = User::where('email', $request->email)
-            ->where('level', 2)
+            ->where('level', Constant::user_level_client)
             ->first();
 
 //        var_dump($user);
@@ -80,7 +81,7 @@ class AccountController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 2, //Người dùng
+            'level' => Constant::user_level_client, //Người dùng
         ];
 
         $this->userService->create($data);
