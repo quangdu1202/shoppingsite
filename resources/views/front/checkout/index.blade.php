@@ -28,14 +28,19 @@
                 <div class="row">
                     @if(Cart::count() > 0)
                     <div class="col-lg-6">
+                        @if(!Auth::user())
                         <div class="checkout-content">
-                            <a href="/login" class="content-btn">Click Here To Login</a>
+                            <a href="/account/login" class="content-btn login-checkout">Click Here To Login</a>
                         </div>
+                        @endif
                         <h4>Billing Details</h4>
                         <div class="row">
+
+                            <input type="hidden" id="user_id" name="user_id" value="{{Auth::user()->id ?? ''}}">
+
                             <div class="col-lg-6">
                                 <label for="fname">First Name <span>*</span></label>
-                                <input type="text" name="first_name" id="fname">
+                                <input type="text" name="first_name" id="fname" value="{{Auth::user()->name ?? ''}}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="lname">Last Name <span>*</span></label>
@@ -43,30 +48,31 @@
                             </div>
                             <div class="col-lg-12">
                                 <label for="cpnname">Company Name</label>
-                                <input type="text" name="company_name" id="cpnname">
+                                <input type="text" name="company_name" id="cpnname" value="{{Auth::user()->company_name ?? ''}}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="ctr">Country <span>*</span></label>
-                                <input type="text" name="country" id="ctr">
+                                <input type="text" name="country" id="ctr" value="{{Auth::user()->country ?? ''}}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="str">Street Address <span>*</span></label>
-                                <input type="text" name="street_address" id="str" class="street-first">
+                                <input type="text" name="street_address" id="str" class="street-first" value="{{Auth::user()->street_address ?? ''}}">
                                 <label for="postcode">Postal Code <span>*</span></label>
-                                <input type="text" name="postcode_zip" id="postcode">
+                                <input type="text" name="postcode_zip" id="postcode" value="{{Auth::user()->postcode_zip ?? ''}}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="town">Town / City <span>*</span></label>
-                                <input type="text" name="town_city" id="town">
+                                <input type="text" name="town_city" id="town" value="{{Auth::user()->town_city ?? ''}}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="email">Email <span>*</span></label>
-                                <input type="text" name="email" id="email">
+                                <input type="text" name="email" id="email" value="{{Auth::user()->email ?? ''}}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="phone">Phone Number <span>*</span></label>
-                                <input type="text" name="phone" id="phone">
+                                <input type="text" name="phone" id="phone" value="{{Auth::user()->phone ?? ''}}">
                             </div>
+                            @if(!Auth::user())
                             <div class="col-lg-12">
                                 <div class="create-item">
                                     <label for="acc-create">
@@ -76,12 +82,10 @@
                                     </label>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="checkout-content">
-                            <input type="text" placeholder="Enter your coupon code" name="" id="">
-                        </div>
                         <div class="place-order">
                             <h4>Order Details</h4>
                             <div class="order-total">
@@ -98,6 +102,9 @@
                                     <li class="fw-normal sub-total">Subtotal <span>${{$subtotal}}</span></li>
                                     <li class="total-price">Final Total <span>${{$total}}</span></li>
                                 </ul>
+                                <div class="checkout-content coupon-input">
+                                    <input type="text" placeholder="Enter your coupon code" name="" id="">
+                                </div>
                                 <div class="payment-check">
                                     <div class="pc-item">
                                         <label for="pc-cod">
