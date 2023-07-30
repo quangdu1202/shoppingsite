@@ -300,4 +300,9 @@
         </div>
     </section>
     <!-- Latest Blog Section end -->
+    @if(session('loggedInNotification'))
+        <script>
+            alert('{{ session('loggedInNotification') }}');
+        </script>
+    @endif
 @endsection

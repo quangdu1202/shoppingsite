@@ -47,3 +47,10 @@ Route::prefix('checkout')->group(function () {
     Route::get('vnPayCheck', [Front\CheckoutController::class, 'vnPayCheck']);
 //    Route::get('sendEmail', [Front\CheckoutController::class, 'vnPayCheck']);
 });
+
+
+Route::prefix('account')->group(function () {
+    Route::get('login', [Front\AccountController::class, 'login']);
+    Route::post('login', [Front\AccountController::class, 'checkLogin']);
+    Route::get('logout', [Front\AccountController::class, 'logout']);
+});
