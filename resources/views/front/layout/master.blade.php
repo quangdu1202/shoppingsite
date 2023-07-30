@@ -177,7 +177,7 @@
                             <li><a href="/cart">Shopping Cart</a></li>
                             <li><a href="/checkout">Checkout</a></li>
                             <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li><a href="/account/register">Register</a></li>
                             <li><a href="/account/login">Login</a></li>
                         </ul>
                     </li>

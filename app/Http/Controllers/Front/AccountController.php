@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\User\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,6 +12,12 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
+    private $userService;
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function login()
     {
         if (Auth::check()) {
@@ -41,8 +48,8 @@ class AccountController extends Controller
             Auth::login($user, $request->remember);
             return redirect('');
         } else {
-            return back()->with('loginNotification', 'Login failed. Check your entered information!');
-//            return back()->with('loginNotification', 'Đăng nhập không thành công, vui lòng kiểm tra lại thông tin đã nhập!');
+            return back()->with('notification', 'Login failed. Check your entered information!');
+//            return back()->with('notification', 'Đăng nhập không thành công, vui lòng kiểm tra lại thông tin đã nhập!');
         }
 
 //        if (Auth::attempt($credentials, $savePassword)){
@@ -59,4 +66,24 @@ class AccountController extends Controller
         return back();
     }
 
+    public function register()
+    {
+        return view('front.account.register');
+    }
+
+    public function postRegister(Request $request)
+    {
+        if($request->password != $request->password_confirmation) {
+            return back()->with('notification', 'Password confirmation does not match!');
+        }
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level' => 2, //Người dùng
+        ];
+
+        $this->userService->create($data);
+        return redirect('account/login')->with('notification', 'Account registered! You can now login!');
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Services\User;
 
-interface UserServiceInterface
+use App\Services\ServiceInterface;
+
+interface UserServiceInterface extends ServiceInterface
 {
 
 }

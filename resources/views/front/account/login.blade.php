@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="index.html"><i class="fa fa-home"></i> Home</a>
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
                         <span>Login</span>
                     </div>
                 </div>
@@ -26,9 +26,9 @@
                     <div class="login-form">
                         <h2>Login to continue</h2>
 
-                        @if(session('loginNotification'))
-                            <div class="alert alert-warning" role="alert">
-                                {{session('loginNotification')}}
+                        @if(session('notification'))
+                            <div class="alert alert-warning" role="alert" style="text-align: center">
+                                {{session('notification')}}
                             </div>
                         @endif
 
@@ -55,7 +55,7 @@
                             <button type="submit" class="site-btn login-btn">Sign In</button>
                         </form>
                         <div class="switch-login">
-                            <a href="register.html" class="or-login">Create a new account</a>
+                            <a href="/account/register" class="or-login">Create a new account</a>
                         </div>
                     </div>
                 </div>
