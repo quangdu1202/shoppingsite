@@ -3273,6 +3273,14 @@ ol {
 	font-weight: 700;
 }
 
+.checkout-form .place-order .order-total .order-table li.sub-total {
+    font-size: 16px;
+}
+
+.checkout-form .place-order .order-total .order-table li.total-price {
+    font-size: 16px;
+}
+
 .checkout-form .place-order .order-total .order-table li.total-price span {
 	color: #e7ab3c;
 }
