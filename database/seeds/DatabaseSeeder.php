@@ -21,75 +21,60 @@ class DatabaseSeeder extends Seeder
                 'avatar' => null,
                 'level' => 0,
                 'description' => null,
-            ],
-            [
-                'id' => 2,
-                'name' => 'admin',
-                'email' => 'admin@gmail.com',
-                'password' => Hash::make('123456'),
-                'avatar' => null,
-                'level' => 0,
-                'description' => null,
-            ],
-            [
-                'id' => 3,
-                'name' => 'Kieu',
-                'email' => 'kieu@gmail.com',
-                'password' => Hash::make('123456'),
-                'avatar' => 'avatar-0.png',
-                'level' => 1,
-                'description' => 'Nah'
-            ],
-            [
-                'id' => 4,
-                'name' => 'Thao',
-                'email' => 'thao@gmail.com',
-                'password' => Hash::make('123456'),
-                'avatar' => 'avatar-1.png',
-                'level' => 1,
-                'description' => 'Nah',
+                'company_name' => null,
+                'country' => 'Vietnam',
+                'street_address' => '66A ngo 2 Nguyen Xa',
+                'postcode_zip' => '100000',
+                'town_city' => 'Ha Noi',
+                'phone' => '0352276941',
             ],
         ]);
 
         DB::table('blogs')->insert([
             [
-                'user_id' => 3,
+                'user_id' => 1,
                 'title' => 'The Personality Trait That Makes People Happier',
+                'subtitle' => 'Lorem ipsum',
                 'image' => 'blog-1.jpg',
                 'category' => 'TRAVEL',
                 'content' => '',
             ],
             [
-                'user_id' => 3,
+                'user_id' => 1,
                 'title' => 'This was one of our first days in Hawaii last week.',
+                'subtitle' => 'Lorem ipsum',
                 'image' => 'blog-2.jpg',
                 'category' => 'QuangDu',
                 'content' => '',
             ],
             [
-                'user_id' => 3,
+                'user_id' => 1,
                 'title' => 'Last week I had my first work trip of the year to Sonoma Valley',
+                'subtitle' => 'Lorem ipsum',
                 'image' => 'blog-3.jpg',
                 'category' => 'TRAVEL',
                 'content' => '',
             ],
             [
-                'user_id' => 3,
+                'user_id' => 1,
                 'title' => 'Happppppy New Year! I know I am a little late on this post',
+                'subtitle' => 'Lorem ipsum',
                 'image' => 'blog-4.jpg',
                 'category' => 'QuangDu',
                 'content' => '',
             ],
             [
-                'user_id' => 3,
+                'user_id' => 1,
                 'title' => 'Absolue collection. The Lancome team has been one…',
+                'subtitle' => 'Lorem ipsum',
                 'image' => 'blog-5.jpg',
                 'category' => 'MODEL',
                 'content' => '',
             ],
             [
-                'user_id' => 3,
+                'user_id' => 1,
                 'title' => 'Writing has always been kind of therapeutic for me',
+                'subtitle' => 'Lorem ipsum',
                 'image' => 'blog-6.jpg',
                 'category' => 'QuangDu',
                 'content' => '',
@@ -348,22 +333,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('product_comments')->insert([
-            [
-                'product_id' => 1,
-                'user_id' => 4,
-                'email' => 'BrandonKelley@gmail.com',
-                'name' => 'Brandon Kelley',
-                'messages' => 'Nice !',
-                'rating' => 4,
-            ],
-            [
-                'product_id' => 1,
-                'user_id' => 5,
-                'email' => 'RoyBanks@gmail.com',
-                'name' => 'Roy Banks',
-                'messages' => 'Nice !',
-                'rating' => 4,
-            ],
+
         ]);
     }
 }
