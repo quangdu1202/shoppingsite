@@ -37,7 +37,7 @@ class VNPay
         /**
          * Description of vnpay_ajax
          *
-         * @author xonv
+         * @author quang
          */
         //require_once("./config.php");
 
@@ -46,12 +46,10 @@ class VNPay
         $vnp_OrderType = 100000; // Loại hàng hóa: Thực Phẩm - Tiêu Dùng (Xem thêm mã tại: https://sandbox.vnpayment.vn/apis/docs/loai-hang-hoa)
         $vnp_Amount = $data['vnp_Amount'] * 100;
         $vnp_Locale = 'vn'; //Ngôn ngữ tiếng việt
-//        $vnp_BankCode = $_POST['bank_code'];
-//        $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
         $inputData = array(
-            "vnp_Version" => "2.0.0",
+            "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => self::$vnp_TmnCode,
             "vnp_Amount" => $vnp_Amount,
             "vnp_Command" => "pay",
@@ -75,9 +73,9 @@ class VNPay
         $hashdata = "";
         foreach ($inputData as $key => $value) {
             if ($i == 1) {
-                $hashdata .= '&' . $key . "=" . $value;
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
             } else {
-                $hashdata .= $key . "=" . $value;
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
                 $i = 1;
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
@@ -86,8 +84,8 @@ class VNPay
         //thêm 'vnp_SecureHashType' & 'vnp_SecureHash'
         $vnp_Url = self::$vnp_Url . "?" . $query;
         if (isset(self::$vnp_HashSecret)) {
-            $vnpSecureHash = hash('sha256', self::$vnp_HashSecret . $hashdata);
-            $vnp_Url .= 'vnp_SecureHashType=SHA256&vnp_SecureHash=' . $vnpSecureHash;
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, self::$vnp_HashSecret);
+            $vnp_Url .= 'vnp_SecureHashType=SHA512&vnp_SecureHash=' . $vnpSecureHash;
         }
 
         $returnData = array('code' => '00'
