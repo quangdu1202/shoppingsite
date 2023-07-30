@@ -2,7 +2,7 @@
 
 namespace App\Services\OrderDetail;
 
-use App\Repositories\Order\OrderDetailRepositoryInterface;
+use App\Repositories\OrderDetail\OrderDetailRepositoryInterface;
 use App\Services\BaseService;
 
 class OrderDetailService extends BaseService implements OrderDetailServiceInterface

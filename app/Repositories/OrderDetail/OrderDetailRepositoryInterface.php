@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Order;
+namespace App\Repositories\OrderDetail;
 
 use App\Repositories\RepositoryInterface;
 

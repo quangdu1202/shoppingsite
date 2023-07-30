@@ -9,8 +9,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="shop.html">Shop</a>
+                        <a href="/"><i class="fa fa-home"></i> Home</a>
+                        <a href="/shop">Shop</a>
+                        <a href="/cart">Cart</a>
                         <span>Check out</span>
                     </div>
                 </div>
@@ -25,6 +26,7 @@
             <form action="" method="post" class="checkout-form">
                 @csrf
                 <div class="row">
+                    @if(Cart::count() > 0)
                     <div class="col-lg-6">
                         <div class="checkout-content">
                             <a href="/login" class="content-btn">Click Here To Login</a>
@@ -33,28 +35,29 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <label for="fname">First Name <span>*</span></label>
-                                <input type="text" name="fname" id="fname">
+                                <input type="text" name="first_name" id="fname">
                             </div>
                             <div class="col-lg-6">
                                 <label for="lname">Last Name <span>*</span></label>
-                                <input type="text" name="lname" id="lname">
+                                <input type="text" name="last_name" id="lname">
                             </div>
                             <div class="col-lg-12">
                                 <label for="cpnname">Company Name</label>
-                                <input type="text" name="cpnname" id="cpnname">
+                                <input type="text" name="company_name" id="cpnname">
                             </div>
                             <div class="col-lg-12">
                                 <label for="ctr">Country <span>*</span></label>
-                                <input type="text" name="ctr" id="ctr">
+                                <input type="text" name="country" id="ctr">
                             </div>
                             <div class="col-lg-12">
                                 <label for="str">Street Address <span>*</span></label>
-                                <input type="text" name="str" id="str" class="street-first">
-                                <input type="text" name="" id="">
+                                <input type="text" name="street_address" id="str" class="street-first">
+                                <label for="postcode">Postal Code <span>*</span></label>
+                                <input type="text" name="postcode_zip" id="postcode">
                             </div>
                             <div class="col-lg-12">
                                 <label for="town">Town / City <span>*</span></label>
-                                <input type="text" name="town" id="town">
+                                <input type="text" name="town_city" id="town">
                             </div>
                             <div class="col-lg-6">
                                 <label for="email">Email <span>*</span></label>
@@ -118,6 +121,11 @@
                         </div>
                     </div>
                 </div>
+                @else
+                    <div class="col-lg-12">
+                        <h4>Your cart is empty… Why not <a style="" href="/shop">check some out</a>!</h4>
+                    </div>
+                @endif
             </form>
         </div>
     </div>

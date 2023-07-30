@@ -42,5 +42,6 @@ Route::prefix('cart')->group(function () {
 
 Route::prefix('checkout')->group(function () {
     Route::get('', [Front\CheckoutController::class, 'index']);
-    Route::get('/', [Front\CheckoutController::class, 'createOrder']);
+    Route::post('/', [Front\CheckoutController::class, 'createOrder']);
+    Route::get('result', [Front\CheckoutController::class, 'result']);
 });
