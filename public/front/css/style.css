@@ -3143,9 +3143,9 @@ ol {
 	padding-bottom: 80px;
 }
 
-.checkout-content {
-	margin-bottom: 50px;
-}
+/*.checkout-content {*/
+/*	margin-bottom: 50px;*/
+/*}*/
 
 .checkout-content .content-btn,
 .checkout-content input {
@@ -3158,8 +3158,16 @@ ol {
 	display: block;
 }
 
+.login-checkout {
+    margin-bottom: 30px;
+}
+
 .checkout-content input {
 	height: 56px !important;
+}
+
+.coupon-input {
+
 }
 
 .checkout-form h4 {
@@ -3244,7 +3252,7 @@ ol {
 }
 
 .checkout-form .place-order .order-total .order-table {
-	margin-bottom: 64px;
+	margin-bottom: 30px;
 }
 
 .checkout-form .place-order .order-total .order-table li {
