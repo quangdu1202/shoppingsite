@@ -25,13 +25,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (!Auth::check()) {
             return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
         }
 
-        $users = $this->userService->all();
+        $users = $this->userService->searchAndPaginate('name', $request->get('search'));
 
         return view('admin.user.index', compact('users'));
     }
