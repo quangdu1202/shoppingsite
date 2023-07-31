@@ -12,7 +12,7 @@ class ProductCategoryController extends Controller
 
     public function __construct(ProductCategoryServiceInterface $productCategoryService)
     {
-        $this->productCategoryService = $this->productCategoryService;
+        $this->productCategoryService = $productCategoryService;
     }
 
     /**
@@ -20,9 +20,11 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.category.index');
+        $productCategories = $this->productCategoryService->searchAndPaginate('name', $request->get('search'));
+
+        return view('admin.category.index', compact('productCategories'));
     }
 
     /**

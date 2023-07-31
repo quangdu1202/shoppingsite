@@ -62,7 +62,7 @@ Route::prefix('account')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::redirect('', 'admin/user');
     Route::resource('user', \Admin\UserController::class);
-    Route::resource('category', \Admin\UserController::class);
+    Route::resource('category', \Admin\ProductCategoryController::class);
 //    Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
     Route::prefix('login')->group(function () {
         Route::get('', [\App\Http\Controllers\Admin\HomeController::class, 'getLogin']);
