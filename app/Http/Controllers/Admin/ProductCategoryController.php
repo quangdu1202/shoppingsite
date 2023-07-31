@@ -60,7 +60,7 @@ class ProductCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -71,7 +71,9 @@ class ProductCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productCategory = $this->productCategoryService->find($id);
+
+        return view('admin.category.edit', compact('productCategory'));
     }
 
     /**
@@ -83,7 +85,10 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->productCategoryService->update($data, $id);
+
+        return redirect('admin/category');
     }
 
     /**
