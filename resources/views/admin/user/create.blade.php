@@ -40,7 +40,7 @@
                                         class="image form-control-file" style="display: none;" value="">
                                     <input type="hidden" name="image_old" value="">
                                     <small class="form-text text-muted">
-                                        Click on the image to change (required)
+                                        Click on the image to change (max file size 2MB)
                                     </small>
                                 </div>
                             </div>

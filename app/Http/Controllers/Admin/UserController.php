@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\User\UserServiceInterface;
+use App\Utilities\Common;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,8 +54,14 @@ class UserController extends Controller
         }
 
         $data = $request->all();
-
         $data['password'] = Hash::make($request->get('password'));
+
+        //Xử lý file
+        if ($request->hasFile('image')) {
+            $data['avatar'] = Common::uploadFile($request->file('image'), 'front/img/user/');
+        }
+
+//        var_dump($data);
 
         $user = $this->userService->create($data);
 
