@@ -11,7 +11,9 @@
 |
 */
 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\Front;
+use Illuminate\Support\Facades\Route;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Services\Product\ProductServiceInterface;
 use Illuminate\Http\Request;
@@ -55,4 +57,9 @@ Route::prefix('account')->group(function () {
     Route::get('logout', [Front\AccountController::class, 'logout']);
     Route::get('register', [Front\AccountController::class, 'register']);
     Route::post('register', [Front\AccountController::class, 'postRegister']);
+});
+
+//Admin
+Route::prefix('admin')->group(function () {
+    Route::resource('user', \Admin\UserController::class);
 });
