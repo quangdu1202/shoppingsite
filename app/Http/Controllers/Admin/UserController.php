@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Services\User\UserServiceInterface;
 use App\Utilities\Common;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -24,9 +25,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->userService->all();
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
+
+        $users = $this->userService->searchAndPaginate('name', $request->get('search'));
 
         return view('admin.user.index', compact('users'));
     }
@@ -38,6 +43,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
         return view('admin.user.create');
     }
 
@@ -49,6 +57,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
+
         if ($request->get('password') != $request->get('password_confirmation')) {
             return back()->with('notification', 'Confirmation password does not match!');
         }
@@ -76,7 +88,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
         return view('admin.user.show', compact('user'));
     }
 
@@ -88,6 +102,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
+
         return view('admin.user.edit', compact('user'));
     }
 
@@ -100,6 +118,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
+
         $data = $request->all();
         if ($request->get('password') != null){
             if ($request->get('password') != $request->get('password_confirmation')) {
@@ -132,6 +154,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
+
         $this->userService->delete($user->id);
 
         $file_name = $user->avatar;

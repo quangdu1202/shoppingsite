@@ -11,7 +11,6 @@
 |
 */
 
-use App\Http\Controllers\Admin;
 use App\Http\Controllers\Front;
 use Illuminate\Support\Facades\Route;
 use App\Repositories\Product\ProductRepositoryInterface;
@@ -61,5 +60,13 @@ Route::prefix('account')->group(function () {
 
 //Admin
 Route::prefix('admin')->group(function () {
+    Route::redirect('', 'admin/user');
     Route::resource('user', \Admin\UserController::class);
+    Route::resource('category', \Admin\ProductCategoryController::class);
+//    Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
+    Route::prefix('login')->group(function () {
+        Route::get('', [\App\Http\Controllers\Admin\HomeController::class, 'getLogin']);
+        Route::post('', [\App\Http\Controllers\Admin\HomeController::class, 'postLogin']);
+    });
+    Route::get('logout', [\App\Http\Controllers\Admin\HomeController::class, 'logout']);
 });
