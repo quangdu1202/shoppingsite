@@ -10,10 +10,11 @@
                 <div class="page-title-heading">
                     <div class="page-title-icon">
                         <svg style="display: block; margin: auto" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>                    </div>
-                    <div>
-                        User
+{{--                        <img height="30" src="front/img/user/ {{$user->avatar ?? 'default-avatar.jpg'}}" alt="">--}}
+                        <div>
+                        {{$user->name}}
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            {{$user->email}}
                         </div>
                     </div>
                 </div>
@@ -32,7 +33,9 @@
             </li>
 
             <li class="nav-item delete">
-                <form action="" method="post">
+                <form action="admin/user/{{$user->id}}" method="post">
+                    @csrf
+                    @method('DELETE')
                     <button class="nav-link btn" type="submit"
                         onclick="return confirm('Do you really want to delete this item?')">
                         <span class="btn-icon-wrapper pr-2 opacity-8">
