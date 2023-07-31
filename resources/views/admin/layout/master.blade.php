@@ -20,6 +20,7 @@
 
     <link href="./dashboard/main.css" rel="stylesheet">
     <link href="./dashboard/my_style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.9.2/css/flag-icons.min.css"/>
 </head>
 
 <body>
@@ -758,7 +759,7 @@
                         <button type="button" data-toggle="dropdown" class="p-0 mr-2 btn btn-link">
                                 <span class="icon-wrapper icon-wrapper-alt rounded-circle">
                                     <span class="icon-wrapper-bg bg-focus"></span>
-                                    <span class="language-icon opacity-8 flag large DE"></span>
+                                    <span class="language-icon opacity-8 flag large fi fi-vn"></span>
                                 </span>
                         </button>
                         <div tabindex="-1" role="menu" aria-hidden="true"
@@ -789,7 +790,7 @@
                             <div tabindex="-1" class="dropdown-divider"></div>
                             <h6 tabindex="-1" class="dropdown-header">Others</h6>
                             <button type="button" tabindex="0" class="dropdown-item active">
-                                <span class="mr-3 opacity-8 flag large DE"></span> Germany
+                                <span class="mr-3 opacity-8 flag large fi fi-vn"></span> Vietnam
                             </button>
                             <button type="button" tabindex="0" class="dropdown-item">
                                 <span class="mr-3 opacity-8 flag large IT"></span> Italy
@@ -2016,7 +2017,7 @@
                                         <div tabindex="-1" class="dropdown-divider"></div>
                                         <h6 tabindex="-1" class="dropdown-header">Others</h6>
                                         <button type="button" tabindex="0" class="dropdown-item active">
-                                            <span class="mr-3 opacity-8 flag large DE"></span>Germany
+                                            <span class="mr-3 opacity-8 flag large VI"></span>Vietnam
                                         </button>
                                         <button type="button" tabindex="0" class="dropdown-item">
                                             <span class="mr-3 opacity-8 flag large IT"></span> Italy
