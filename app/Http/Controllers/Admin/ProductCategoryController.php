@@ -99,6 +99,8 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->productCategoryService->delete($id);
+
+        return redirect('admin/category');
     }
 }
