@@ -66,7 +66,7 @@
                                 <label for="password"
                                     class="col-md-3 offset-1 text-md-right col-form-label">Password</label>
                                 <div class="col-md-7 offset col-xl-6">
-                                    <input name="password" id="password" placeholder="Password" type="password"
+                                    <input required name="password" id="password" placeholder="Password" type="password"
                                         class="form-control" value="">
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                 <label for="password_confirmation"
                                     class="col-md-3 offset-1 text-md-right col-form-label">Confirm Password</label>
                                 <div class="col-md-7 col-xl-6">
-                                    <input name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" type="password"
+                                    <input required name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" type="password"
                                         class="form-control" value="">
                                 </div>
                             </div>
