@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\User\UserServiceInterface;
+use App\Utilities\Common;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,8 +54,14 @@ class UserController extends Controller
         }
 
         $data = $request->all();
-
         $data['password'] = Hash::make($request->get('password'));
+
+        //Xử lý file
+        if ($request->hasFile('image')) {
+            $data['avatar'] = Common::uploadFile($request->file('image'), 'front/img/user/');
+        }
+
+//        var_dump($data);
 
         $user = $this->userService->create($data);
 
@@ -81,7 +88,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -93,7 +100,28 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->all();
+        if ($request->get('password') != null){
+            if ($request->get('password') != $request->get('password_confirmation')) {
+                return back()->with('notification', 'Confirmation password does not match!');
+            }
+            $data['password'] = Hash::make($request->get('password'));
+        }else {
+            unset($data['password']);
+        }
+
+        if ($request->hasFile('image')) {
+            $data['avatar'] = Common::uploadFile($request->file('image'), 'front/img/user/');
+
+            $file_name_old = $request->get('image_old');
+            if ($file_name_old != '') {
+                unlink('front/img/user/' .  $file_name_old);
+            }
+        }
+
+        $this->userService->update($data, $user->id);
+
+        return redirect('admin/user/' . $user->id);
     }
 
     /**
@@ -104,6 +132,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $this->userService->delete($user->id);
+
+        $file_name = $user->avatar;
+        if ($file_name != '') {
+            unlink('front/img/user/' . $file_name);
+        }
+        return redirect('admin/user');
     }
 }
