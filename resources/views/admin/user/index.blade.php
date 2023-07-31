@@ -198,5 +198,10 @@
             </div>
         </div>
     </div>
+    @if(session('loggedInNotification'))
+        <script>
+            alert('{{ session('loggedInNotification') }}');
+        </script>
+    @endif
     <!-- End Main -->
 @endsection

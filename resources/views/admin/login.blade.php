@@ -75,5 +75,9 @@
     </div>
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
 </body>
-
+@if(session('notLoggedInNotification'))
+    <script>
+        alert('{{ session('notLoggedInNotification') }}');
+    </script>
+@endif
 </html>

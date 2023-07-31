@@ -13,6 +13,9 @@ class HomeController extends Controller
 {
     public function getLogin()
     {
+        if (Auth::check()) {
+            return redirect('admin/user')->with('loggedInNotification', 'User is already logged in!'); // Redirect to the home page or any other page
+        }
         return view('admin.login');
     }
 
@@ -47,5 +50,12 @@ class HomeController extends Controller
 //            return back()->with('notification', 'Login failed. Check your entered information!');
 ////            return back()->with('notification', 'Đăng nhập không thành công, vui lòng kiểm tra lại thông tin đã nhập!');
 //        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('admin/login');
     }
 }
