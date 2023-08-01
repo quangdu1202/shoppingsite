@@ -33,7 +33,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.brand.create');
     }
 
     /**
@@ -44,7 +44,10 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $this->brandService->create($data);
+
+        return redirect('admin/brand');
     }
 
     /**
@@ -66,7 +69,9 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brand = $this->brandService->find($id);
+
+        return view('admin.brand.edit', compact('brand'));
     }
 
     /**
@@ -78,7 +83,10 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $this->brandService->update($data, $id);
+
+        return redirect('admin/brand');
     }
 
     /**
