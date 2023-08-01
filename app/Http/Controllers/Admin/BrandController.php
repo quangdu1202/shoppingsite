@@ -97,6 +97,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->brandService->delete($id);
+
+        return redirect('admin/brand');
     }
 }
