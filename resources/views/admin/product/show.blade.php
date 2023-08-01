@@ -156,7 +156,7 @@
                             <label for="description"
                                 class="col-md-4 text-md-right col-form-label">Description</label>
                             <div class="col-md-8 col-xl-7">
-                                <p>{{$product->description}}</p>
+                                <p>{!!$product->description!!}</p>
                             </div>
                         </div>
                     </div>

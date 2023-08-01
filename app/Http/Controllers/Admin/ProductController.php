@@ -3,15 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\Brand\BrandServiceInterface;
 use App\Services\Product\ProductServiceInterface;
+use App\Services\ProductCategory\ProductCategoryServiceInterface;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     private $productService;
-    public function __construct(ProductServiceInterface $productService)
+    private $brandService;
+    private $productCategoryService;
+    public function __construct(ProductServiceInterface $productService, BrandServiceInterface $brandService, ProductCategoryServiceInterface $productCategoryService)
     {
         $this->productService = $productService;
+        $this->brandService = $brandService;
+        $this->productCategoryService = $productCategoryService;
     }
 
     /**
@@ -33,7 +39,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $brands = $this->brandService->all();
+        $productCategories = $this->productCategoryService->all();
+
+        return view('admin.product.create', compact('brands', 'productCategories'));
     }
 
     /**
@@ -44,7 +53,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $featured = $request->get('featured');
+        $data['featured'] = $featured ? '1' : 0;
+
+        $product = $this->productService->create($data);
+
+        return redirect('admin/product/' . $product->id);
     }
 
     /**
