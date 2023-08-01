@@ -63,7 +63,7 @@
                             </thead>
                             <tbody>
 
-                            @foreach($orders as $order)
+                            @foreach($paginatedOrders as $order)
                                 <tr>
                                     <td class="text-center text-muted">#{{$order->id}}</td>
                                     <td>
@@ -112,7 +112,7 @@
                     </div>
 
                     <div class="d-block card-footer">
-                        {{$orders->links()}}
+                        {{$paginatedOrders->links()}}
                     </div>
 
                 </div>

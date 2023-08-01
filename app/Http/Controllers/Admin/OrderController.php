@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Services\Order\OrderServiceInterface;
 use App\Services\OrderDetail\OrderDetailServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class OrderController extends Controller
 {
@@ -22,9 +24,31 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $orders = $this->orderService->searchAndPaginate('first_name', $request->get('search'));
+//        $orders = $this->orderService->searchAndPaginate('first_name', $request->get('search'));
 
-        return view('admin.order.index', compact('orders'));
+        $keyword = $request->get('search');
+
+        $searchFields = ['first_name', 'last_name', 'email', 'id'];
+
+        $orders = collect();
+
+        foreach ($searchFields as $field) {
+            $results = $this->orderService->searchAndPaginate($field, $keyword);
+            $orders = $orders->merge($results);
+        }
+
+        // Convert the array of arrays to a collection of Order model instances
+        $ordersCollection = collect($orders['data'])->map(function ($order) {
+            return new Order((array)$order);
+        });
+
+        // Paginate the collection of Order model instances
+        $perPage = 5;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $paginatedOrders = $ordersCollection->slice(($currentPage - 1) * $perPage, $perPage);
+        $paginatedOrders = new LengthAwarePaginator($paginatedOrders, $ordersCollection->count(), $perPage, $currentPage);
+
+        return view('admin.order.index', compact('paginatedOrders'));
     }
 
     /**
