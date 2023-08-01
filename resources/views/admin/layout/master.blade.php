@@ -2666,6 +2666,7 @@
 
 <script type="text/javascript" src="./dashboard/assets/scripts/main.js"></script>
 <script type="text/javascript" src="./dashboard/assets/scripts/my_script.js"></script>
+
 </body>
 
 </html>
