@@ -66,6 +66,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('brand', \Admin\BrandController::class);
     Route::resource('product', \Admin\ProductController::class);
     Route::resource('product/{product_id}/image', \Admin\ProductImageController::class);
+    Route::resource('product/{product_id}/variant', \Admin\ProductVariantController::class);
 //    Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
     Route::prefix('login')->group(function () {
         Route::get('', [\App\Http\Controllers\Admin\HomeController::class, 'getLogin']);

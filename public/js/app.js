@@ -17378,7 +17378,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   /** Used to match a single whitespace character. */
   var reWhitespace = /\s/;
 
-  /** Used to match wrap detail comments. */
+  /** Used to match wrap variant comments. */
   var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
       reWrapDetails = /\{\n\/\* \[wrapped with (.+)\] \*/,
       reSplitDetails = /,? & /;
