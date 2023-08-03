@@ -83,7 +83,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = $this->productService->find($id);
+
+        $brands = $this->brandService->all();
+        $productCategories = $this->productCategoryService->all();
+
+        return view('admin.product.edit', compact('product', 'brands', 'productCategories'));
     }
 
     /**
@@ -95,7 +100,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $featured = $request->get('featured');
+        $data['featured'] = $featured ? '1' : 0;
+        $this->productService->update($data, $id);
+
+        return redirect('admin/product/' . $id);
     }
 
     /**
@@ -106,6 +116,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->productService->delete($id);
+
+        return redirect('admin/product');
     }
 }

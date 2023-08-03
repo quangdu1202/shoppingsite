@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 
-@section('title', ' Create Product')
+@section('title', 'Edit Product')
 
 @section('body')
     <!-- Main -->
@@ -26,8 +26,9 @@
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <form method="post" action="admin/product" enctype="multipart/form-data">
+                        <form method="post" action="admin/product/{{$product->id}}" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="position-relative row form-group">
                                 <label for="brand_id"
                                     class="col-md-3 text-md-right col-form-label">Brand</label>
@@ -35,9 +36,9 @@
                                     <select required name="brand_id" id="brand_id" class="form-control">
                                         <option value="">-- Brand --</option>
                                         @foreach($brands as $brand)
-                                        <option value="{{$brand->id}}">
-                                            {{$brand->name}}
-                                        </option>
+                                            <option value="{{$brand->id}}" @if($brand->id == $product->brand->id) {{'selected'}} @endif>
+                                                {{$brand->name}}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -50,9 +51,9 @@
                                     <select required name="product_category_id" id="product_category_id" class="form-control">
                                         <option value="">-- Category --</option>
                                         @foreach($productCategories as $productCategory)
-                                        <option value='{{$productCategory->id}}'>
-                                            {{$productCategory->name}}
-                                        </option>
+                                            <option value='{{$productCategory->id}}' @if($productCategory->id == $product->product_category_id) {{'selected'}} @endif>
+                                                {{$productCategory->name}}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -62,7 +63,7 @@
                                 <label for="name" class="col-md-3 text-md-right col-form-label">Name</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="name" id="name" placeholder="Name" type="text"
-                                        class="form-control" value="">
+                                        class="form-control" value="{{$product->name}}">
                                 </div>
                             </div>
 
@@ -71,7 +72,7 @@
                                     class="col-md-3 text-md-right col-form-label">Content</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="content" id="content"
-                                        placeholder="Content" type="text" class="form-control" value="">
+                                        placeholder="Content" type="text" class="form-control" value="{{$product->content}}">
                                 </div>
                             </div>
 
@@ -80,7 +81,7 @@
                                     class="col-md-3 text-md-right col-form-label">Price</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="price" id="price"
-                                        placeholder="Price" type="number" step="0.01" class="form-control" value="">
+                                        placeholder="Price" type="text" class="form-control" value="{{$product->price}}">
                                 </div>
                             </div>
 
@@ -89,7 +90,7 @@
                                     class="col-md-3 text-md-right col-form-label">Discount</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="discount" id="discount"
-                                        placeholder="Discount" type="number" step="0.01" class="form-control" value="">
+                                        placeholder="Discount" type="text" class="form-control" value="{{$product->discount}}">
                                 </div>
                             </div>
 
@@ -98,7 +99,7 @@
                                     class="col-md-3 text-md-right col-form-label">Weight</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="weight" id="weight"
-                                        placeholder="Weight" type="text" class="form-control" value="">
+                                        placeholder="Weight" type="text" class="form-control" value="{{$product->weight}}">
                                 </div>
                             </div>
 
@@ -107,16 +108,7 @@
                                     class="col-md-3 text-md-right col-form-label">SKU</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="sku" id="sku"
-                                        placeholder="SKU" type="text" class="form-control" value="">
-                                </div>
-                            </div>
-
-                            <div class="position-relative row form-group">
-                                <label for="qty"
-                                       class="col-md-3 text-md-right col-form-label">QTY</label>
-                                <div class="col-md-9 col-xl-8">
-                                    <input required name="qty" id="qty"
-                                           placeholder="QTY" type="text" class="form-control" value="">
+                                        placeholder="SKU" type="text" class="form-control" value="{{$product->sku}}">
                                 </div>
                             </div>
 
@@ -125,7 +117,7 @@
                                     class="col-md-3 text-md-right col-form-label">Tag</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="tag" id="tag"
-                                        placeholder="Tag" type="text" class="form-control" value="">
+                                        placeholder="Tag" type="text" class="form-control" value="{{$product->tag}}">
                                 </div>
                             </div>
 
@@ -134,12 +126,11 @@
                                     class="col-md-3 text-md-right col-form-label">Featured</label>
                                 <div class="col-md-9 col-xl-8">
                                     <div class="position-relative form-check pt-sm-2">
-                                        <input name="featured" id="featured" type="checkbox" value="0" class="form-check-input">
+                                        <input name="featured" id="featured" type="checkbox" @if($product->featured){{'value=1 checked'}}@else{{'value="0"'}}@endif class="form-check-input">
                                         <label for="featured" class="form-check-label">Featured</label>
                                         <script>
                                             // Lấy tham chiếu đến checkbox
                                             const checkbox = document.getElementById('featured');
-                                            checkbox.value = '0';
                                             // Thêm sự kiện onchange để theo dõi sự thay đổi của checkbox
                                             checkbox.addEventListener('change', function() {
                                                 // Nếu checkbox được chọn (checked), gán giá trị 1
@@ -155,7 +146,7 @@
                                 <label for="description"
                                     class="col-md-3 text-md-right col-form-label">Description</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <textarea class="form-control" name="description" id="description" placeholder="Description" rows="3"></textarea>
+                                    <textarea class="form-control" name="description" id="description" placeholder="Description">{{$product->description}}</textarea>
                                 </div>
                             </div>
 
@@ -190,7 +181,7 @@
     <!-- End Main -->
     {{--CK Editor--}}
     <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
-{{--    import CKEDITOR from "lodash";--}}
+    {{--    import CKEDITOR from "lodash";--}}
     <script>
         ClassicEditor
             .create( document.querySelector( '#description' ), {

@@ -13,9 +13,6 @@
 
 use App\Http\Controllers\Front;
 use Illuminate\Support\Facades\Route;
-use App\Repositories\Product\ProductRepositoryInterface;
-use App\Services\Product\ProductServiceInterface;
-use Illuminate\Http\Request;
 
 Route::get('/', [Front\HomeController::class, 'index']);
 //Route::get('/',function (ProductRepositoryInterface $productRepository) {
@@ -61,10 +58,13 @@ Route::prefix('account')->group(function () {
 //Admin
 Route::prefix('admin')->group(function () {
     Route::redirect('', 'admin/user');
-    Route::resource('user', \Admin\UserController::class);
-    Route::resource('category', \Admin\ProductCategoryController::class);
-    Route::resource('brand', \Admin\BrandController::class);
-    Route::resource('product', \Admin\ProductController::class);
+    Route::resource('user', \Admin\UserController::class)->middleware(\App\Http\Middleware\CheckAdminLogin::class);
+    Route::resource('category', \Admin\ProductCategoryController::class)->middleware(\App\Http\Middleware\CheckAdminLogin::class);
+    Route::resource('brand', \Admin\BrandController::class)->middleware(\App\Http\Middleware\CheckAdminLogin::class);
+    Route::resource('product', \Admin\ProductController::class)->middleware(\App\Http\Middleware\CheckAdminLogin::class);
+    Route::resource('product/{product_id}/image', \Admin\ProductImageController::class)->middleware(\App\Http\Middleware\CheckAdminLogin::class);
+    Route::resource('product/{product_id}/variant', \Admin\ProductVariantController::class)->middleware(\App\Http\Middleware\CheckAdminLogin::class);
+    Route::resource('order', \Admin\OrderController::class)->middleware(\App\Http\Middleware\CheckAdminLogin::class);
 //    Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
     Route::prefix('login')->group(function () {
         Route::get('', [\App\Http\Controllers\Admin\HomeController::class, 'getLogin']);
