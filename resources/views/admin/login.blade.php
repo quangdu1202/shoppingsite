@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <base href="/dashboard/">
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
@@ -15,13 +15,13 @@
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
 
-    <link href="./main.css" rel="stylesheet">
+    <link href="dashboard/main.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="app-container app-theme-white body-tabs-shadow">
         <div class="app-container">
-            <div class="h-100 bg-plum-plate bg-animation">
+            <div class="h-100 bg-heavy-rain bg-animation">
                 <div class="d-flex h-100 justify-content-center align-items-center">
                     <div class="mx-auto app-login-box col-md-8">
                         <div class="app-logo-inverse mx-auto mb-3"></div>
@@ -67,13 +67,13 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="text-center text-white opacity-8 mt-3">Copyright © CodeLean 2022</div>
+                        <div class="text-center text-white opacity-8 mt-3"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="./assets/scripts/main.js"></script>
+    <script type="text/javascript" src="dashboard/assets/scripts/main.js"></script>
 </body>
 @if(session('notLoggedInNotification'))
     <script>

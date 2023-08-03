@@ -11237,9 +11237,9 @@ a, button, .btn {
 }
 
 .app-header__logo .logo-src {
-    height: 23px;
-    width: 97px;
-    background: url(assets/images/logo-inverse.png)
+    height: 40px;
+    width: 193px;
+    background: url(./assets/images/logo-ngang.webp) no-repeat;
 }
 
 .app-header__menu, .app-header__mobile-menu {
@@ -20829,15 +20829,15 @@ legend {
 }
 
 .app-logo {
-    height: 23px;
-    width: 97px;
-    background: url(assets/images/logo-inverse.png)
+    height: 108px;
+    width: 520px;
+    background: url(./assets/images/logo-ngang.png) no-repeat;
 }
 
 .app-logo-inverse {
-    height: 23px;
-    width: 97px;
-    background: url(assets/images/logo.png)
+    height: 108px;
+    width: 520px;
+    background: url(./assets/images/logo-ngang.png) no-repeat;
 }
 
 .app-login-box .app-logo {

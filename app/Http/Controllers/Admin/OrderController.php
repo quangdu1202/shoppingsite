@@ -43,7 +43,7 @@ class OrderController extends Controller
         });
 
         // Paginate the collection of Order model instances
-        $perPage = 5;
+        $perPage = 10;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $paginatedOrders = $ordersCollection->slice(($currentPage - 1) * $perPage, $perPage);
         $paginatedOrders = new LengthAwarePaginator($paginatedOrders, $ordersCollection->count(), $perPage, $currentPage);

@@ -38,7 +38,7 @@ class HomeController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             return redirect()->intended('admin');
         }else {
-            return back()->with('notification', 'Login failed. Check your entered information!');
+            return back()->with('notification', 'Login failed! Wrong credentials or missing access permission!');
         }
 
 
