@@ -22,8 +22,8 @@
     <!-- Shopping Cart Section begin -->
     <div class="shopping-cart spad">
         <div class="container">
+            @if(Cart::count() > 0)
             <div class="row">
-                @if(Cart::count() > 0)
                 <div class="col-lg-12">
                     <div class="cart-table">
                         <table>
@@ -38,7 +38,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($cartItems as $cartItem)`
+                            @foreach($cartItems as $cartItem)
                                 <tr data-rowid="{{$cartItem->rowId}}">
                                     <td class="cart-pic first-row"><img style="height: 170px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path ?? '_default-product.jpg'}}" alt=""></td>
                                     <td class="cart-title first-row">
@@ -93,12 +93,10 @@
                         </div>
                     </div>
                 </div>
-                @else
-                <div class="col-lg-12">
-                    <h4>Nothing here… Why not <a style="" href="/shop">check some out</a>!</h4>
-                </div>
-                @endif
             </div>
+            @else
+                @include('front.shop.empty-cart')
+            @endif
         </div>
     </div>
     <!-- Shopping Cart Section end -->

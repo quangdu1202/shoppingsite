@@ -18,13 +18,13 @@ class CheckAdminLogin
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!Auth::check()) {
+            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
+        }
+
         if (Auth::user()->level != Constant::user_level_host && Auth::user()->level != Constant::user_level_admin) {
             Auth::logout();
             return redirect('admin/login')->with('notLoggedInNotification', 'User does not have access!'); // Redirect to the home page or any other page
-        }
-
-        if (!Auth::check()) {
-            return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
         }
 
 //        if(Auth::guest()) {

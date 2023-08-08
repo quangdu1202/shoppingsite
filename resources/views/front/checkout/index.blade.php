@@ -40,11 +40,11 @@
 
                             <div class="col-lg-6">
                                 <label for="fname">First Name <span>*</span></label>
-                                <input type="text" name="first_name" id="fname" value="{{Auth::user()->name ?? ''}}">
+                                <input required type="text" name="first_name" id="fname" value="{{Auth::user()->name ?? ''}}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="lname">Last Name <span>*</span></label>
-                                <input type="text" name="last_name" id="lname">
+                                <input required type="text" name="last_name" id="lname" value="{{Auth::user()->lastname ?? ''}}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="cpnname">Company Name</label>
@@ -52,25 +52,25 @@
                             </div>
                             <div class="col-lg-12">
                                 <label for="ctr">Country <span>*</span></label>
-                                <input type="text" name="country" id="ctr" value="{{Auth::user()->country ?? ''}}">
+                                <input required type="text" name="country" id="ctr" value="{{Auth::user()->country ?? ''}}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="str">Street Address <span>*</span></label>
-                                <input type="text" name="street_address" id="str" class="street-first" value="{{Auth::user()->street_address ?? ''}}">
+                                <input required type="text" name="street_address" id="str" class="street-first" value="{{Auth::user()->street_address ?? ''}}">
                                 <label for="postcode">Postal Code <span>*</span></label>
-                                <input type="text" name="postcode_zip" id="postcode" value="{{Auth::user()->postcode_zip ?? ''}}">
+                                <input required type="text" name="postcode_zip" id="postcode" value="{{Auth::user()->postcode_zip ?? ''}}">
                             </div>
                             <div class="col-lg-12">
                                 <label for="town">Town / City <span>*</span></label>
-                                <input type="text" name="town_city" id="town" value="{{Auth::user()->town_city ?? ''}}">
+                                <input required type="text" name="town_city" id="town" value="{{Auth::user()->town_city ?? ''}}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="email">Email <span>*</span></label>
-                                <input type="text" name="email" id="email" value="{{Auth::user()->email ?? ''}}">
+                                <input required type="text" name="email" id="email" value="{{Auth::user()->email ?? ''}}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="phone">Phone Number <span>*</span></label>
-                                <input type="text" name="phone" id="phone" value="{{Auth::user()->phone ?? ''}}">
+                                <input required type="text" name="phone" id="phone" value="{{Auth::user()->phone ?? ''}}">
                             </div>
                             @if(!Auth::user())
                             <div class="col-lg-12">

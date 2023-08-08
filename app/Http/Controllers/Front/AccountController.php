@@ -65,7 +65,7 @@ class AccountController extends Controller
     {
         Auth::logout();
 
-        return back();
+        return redirect('/');
     }
 
     public function register()
@@ -87,5 +87,11 @@ class AccountController extends Controller
 
         $this->userService->create($data);
         return redirect('account/login')->with('notification', 'Account registered! You can now login!');
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('front.account.profile', compact('user'));
     }
 }

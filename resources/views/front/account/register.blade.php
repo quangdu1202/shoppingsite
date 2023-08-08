@@ -59,5 +59,24 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var navitem = document.querySelector(".nav-item");
+            if (navitem) {
+                var navitemPosition = navitem.getBoundingClientRect().top + window.scrollY;
+
+                // Cuộn tự động đến vị trí breadcrumb
+                function scrollToNavItem() {
+                    window.scrollTo({
+                        top: navitemPosition,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Gọi hàm scrollToBreadcrumb khi trang tải xong
+                scrollToNavItem();
+            }
+        });
+    </script>
     <!-- Register Section end -->
 @endsection

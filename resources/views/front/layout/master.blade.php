@@ -13,6 +13,7 @@
 
     <!-- Css Styles -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@1.0.0/dist/tailwind.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="front/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/themify-icons.css" type="text/css">
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="front/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/style.css" type="text/css">
+    <link rel="stylesheet" href="front/css/empty-cart.css" type="text/css">
 </head>
 
 <body>
@@ -301,7 +303,7 @@
     </div>
 </footer>
 <!-- Footer Section end -->
-
+<button id="scrollToTopBtn" title="Go to top">Top</button>
 <!-- Js Plugins -->
 <script src="front/js/jquery-3.3.1.min.js"></script>
 <script src="front/js/bootstrap.min.js"></script>
@@ -314,6 +316,27 @@
 <script src="front/js/owl.carousel.min.js"></script>
 <script src="front/js/main.js"></script>
 <script src="front/js/owlcarousel2-filter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stylus/0.59.0/stylus.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 100) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        });
+
+        scrollToTopBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
