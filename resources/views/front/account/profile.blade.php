@@ -4,6 +4,8 @@
 
 @section('body')
     <link rel="stylesheet" href="front/css/profile.css" type="text/css">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="container bootstrap snippets bootdey">
     <div class="row">
         <div class="profile-nav col-md-3">

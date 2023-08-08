@@ -30,6 +30,22 @@ Route::prefix('shop')->group(function () {
     Route::post('product/{id}', [Front\ShopController::class,'postComment']);
 });
 
+Route::prefix('blog')->group(function () {
+    Route::get('', [Front\BlogController::class,'index']);
+});
+
+Route::prefix('contact')->group(function () {
+    Route::get('/',function () {
+        return view('front.contact.index');
+    });
+});
+
+Route::prefix('faq')->group(function () {
+    Route::get('/',function () {
+        return view('front.faq.index');
+    });
+});
+
 Route::prefix('cart')->group(function () {
     Route::get('/', [Front\CartController::class, 'index']);
     Route::get('add', [Front\CartController::class, 'add']);
