@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="vi">
 
 <head>
     <base href="{{asset('/')}}">
@@ -13,6 +13,7 @@
 
     <!-- Css Styles -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@1.0.0/dist/tailwind.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="front/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/themify-icons.css" type="text/css">
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="front/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/style.css" type="text/css">
+    <link rel="stylesheet" href="front/css/empty-cart.css" type="text/css">
 </head>
 
 <body>
@@ -41,7 +43,7 @@
                 </div>
                 <div class="phone-service">
                     <i class="fa fa-phone"></i>
-                    <a href="tel:0352276941" style="color: black;">0352276941</a>
+                    <a href="tel:0352276941" style="color: black;">+84 352276941</a>
                 </div>
             </div>
             <div class="ht-right">
@@ -71,17 +73,16 @@
     <div class="container">
         <div class="inner-header">
             <div class="row">
-                <div class="col-lg-2 col-md-2">
+                <div class="col-lg-2 col-md-2 logo-row">
                     <div class="logo">
                         <a href="/">
-                            <img src="front/img/logo.png" height="25" alt="">
+                            <img src="front/img/logo.png" height="108" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-7">
+                <div class="col-lg-8 col-md-8">
                     <form action="/shop">
                         <div class="advanced-search">
-                            <button type="button" class="category-btn">All categories</button>
                             <div class="input-group">
                                 <input name="search" value="{{request('search')}}" type="text" placeholder="Tìm theo tên sản phẩm">
                                 <button type="submit"><i class="ti-search"></i></button>
@@ -89,7 +90,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-3 col-md-3 text-right">
+                <div class="col-lg-2 col-md-2 text-right">
                     <ul class="nav-right">
                         <li class="heart-icon">
                             <a href="#">
@@ -108,7 +109,7 @@
                                         <tbody>
                                         @foreach(Cart::content() as $cartItem)
                                         <tr data-rowId="{{$cartItem->rowId}}">
-                                            <td class="si-pic"><img style="height: 70px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path}}" alt=""></td>
+                                            <td class="si-pic"><img style="height: 70px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path ?? '_default-product.jpg'}}" alt=""></td>
                                             <td class="si-text">
                                                 <div class="product-selected">
                                                     <p class="in-cart-details">${{number_format($cartItem->price, 2)}} x {{$cartItem->qty}}</p>
@@ -145,7 +146,7 @@
             <div class="nav-depart">
                 <div class="depart-btn">
                     <i class="ti-menu"></i>
-                    <span>All Departments</span>
+                    <span>All Categories</span>
                     <ul class="depart-hover">
                         <li class="active"><a href="#">Women's Clothing</a></li>
                         <li><a href="#">Men's Clothing</a></li>
@@ -169,14 +170,14 @@
                             <li><a href="">Kid's</a></li>
                         </ul>
                     </li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact</a></li>
                     <li><a href="">Pages</a>
                         <ul class="dropdown">
                             <li><a href="blog-details.html">Blog Details</a></li>
                             <li><a href="/cart">Shopping Cart</a></li>
                             <li><a href="/checkout">Checkout</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="/faq">FAQ</a></li>
                             <li><a href="/account/register">Register</a></li>
                             <li><a href="/account/login">Login</a></li>
                         </ul>
@@ -302,7 +303,7 @@
     </div>
 </footer>
 <!-- Footer Section end -->
-
+<button id="scrollToTopBtn" title="Go to top">Top</button>
 <!-- Js Plugins -->
 <script src="front/js/jquery-3.3.1.min.js"></script>
 <script src="front/js/bootstrap.min.js"></script>
@@ -315,6 +316,27 @@
 <script src="front/js/owl.carousel.min.js"></script>
 <script src="front/js/main.js"></script>
 <script src="front/js/owlcarousel2-filter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stylus/0.59.0/stylus.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 100) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        });
+
+        scrollToTopBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

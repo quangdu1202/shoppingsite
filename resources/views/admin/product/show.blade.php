@@ -61,7 +61,7 @@
                             <label for="brand_id"
                                 class="col-md-4 text-md-right col-form-label">Product Details</label>
                             <div class="col-md-8 col-xl-7">
-                                <p><a href="admin/product/{{$product->id}}/variant">Manage details</a></p>
+                                <p><a href="admin/product/{{$product->id}}/variant">Manage variants</a></p>
                             </div>
                         </div>
 

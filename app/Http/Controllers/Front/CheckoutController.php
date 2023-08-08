@@ -78,7 +78,7 @@ class CheckoutController extends Controller
             Cart::destroy();
 
             //4. Trả về kết quả
-            return redirect('checkout/result')->with('notification', 'Order placed! Check your email for more variant!');
+            return redirect('checkout/result')->with('notification', 'Order placed! Check your email for more details!');
         }else{ //Hiện tại đặt là Paypal, cần sửa sau
             //1. Khởi tạo URL VNPay
             $data_url = VNPay::vnpay_create_payment([
@@ -115,7 +115,7 @@ class CheckoutController extends Controller
                 //Xoá giỏ hàng
                     Cart::destroy();
                 //Trả về kết quả
-                return redirect('checkout/result')->with('notification', 'Order placed! Check your email for more variant!');
+                return redirect('checkout/result')->with('notification', 'Order placed! Check your email for more details!');
             }else {
                 //Xoá đơn hàng đã thêm vào database
                 $this->orderService->delete($orderID);

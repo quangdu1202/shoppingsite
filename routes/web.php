@@ -30,6 +30,22 @@ Route::prefix('shop')->group(function () {
     Route::post('product/{id}', [Front\ShopController::class,'postComment']);
 });
 
+Route::prefix('blog')->group(function () {
+    Route::get('', [Front\BlogController::class,'index']);
+});
+
+Route::prefix('contact')->group(function () {
+    Route::get('/',function () {
+        return view('front.contact.index');
+    });
+});
+
+Route::prefix('faq')->group(function () {
+    Route::get('/',function () {
+        return view('front.faq.index');
+    });
+});
+
 Route::prefix('cart')->group(function () {
     Route::get('/', [Front\CartController::class, 'index']);
     Route::get('add', [Front\CartController::class, 'add']);
@@ -46,10 +62,10 @@ Route::prefix('checkout')->group(function () {
 //    Route::get('sendEmail', [Front\CheckoutController::class, 'vnPayCheck']);
 });
 
-
 Route::prefix('account')->group(function () {
     Route::get('login', [Front\AccountController::class, 'login']);
     Route::post('login', [Front\AccountController::class, 'checkLogin']);
+    Route::get('profile', [Front\AccountController::class, 'profile']);
     Route::get('logout', [Front\AccountController::class, 'logout']);
     Route::get('register', [Front\AccountController::class, 'register']);
     Route::post('register', [Front\AccountController::class, 'postRegister']);

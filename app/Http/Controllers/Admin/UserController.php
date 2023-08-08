@@ -115,7 +115,9 @@ class UserController extends Controller
 
             $file_name_old = $request->get('image_old');
             if ($file_name_old != '') {
-                unlink('front/img/user/' .  $file_name_old);
+                if(file_exists('front/img/user/' .  $file_name_old)) {
+                    unlink('front/img/user/' .  $file_name_old);
+                }
             }
         }
 

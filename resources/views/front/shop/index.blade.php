@@ -28,7 +28,7 @@
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="product-show-option">
                         <div class="row">
-                            <div class="col-lg-7 col-md-7">
+                            <div class="col-lg-12 col-md-7">
                                 <form action="">
                                     <div class="select-option">
                                         <select class="sorting" name="sort" onchange="this.form.submit();" id="">
@@ -61,12 +61,11 @@
                                             <option {{request('show') == '15'?'selected':''}} value="15">Show: 15
                                             </option>
                                         </select>
+                                        <a href="/shop" class="primary-btn" style="height: 40px; margin-left: 20px; padding: 9px 30px;">Clear Filter</a>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-lg-5 col-md-5 text-right">
-
-                            </div>
+{{--                            <div class="col-lg-5 col-md-5 text-right"></div>--}}
                         </div>
                     </div>
                     <div class="product-list">
