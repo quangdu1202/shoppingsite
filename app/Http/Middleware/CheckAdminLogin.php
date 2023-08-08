@@ -18,6 +18,7 @@ class CheckAdminLogin
      */
     public function handle(Request $request, Closure $next)
     {
+
         if (!Auth::check()) {
             return redirect('admin/login')->with('notLoggedInNotification', 'User is not logged in!'); // Redirect to the home page or any other page
         }
