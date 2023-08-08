@@ -312,9 +312,12 @@ function addToCart(productId) {
                 cartHover_existingItems.find('.in-cart-details').text('$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty);
             }else {
                 console.log("found new item");
+                var imagePath = response['cartItem'].options && response['cartItem'].options.images && response['cartItem'].options.images.length > 0
+                    ? response['cartItem'].options.images[0].path
+                    : '_default-product.jpg';
                 var newItem =
                     '<tr data-rowId="' + response['cartItem'].rowId + '">\n' +
-                    '    <td class="si-pic"><img style="height: 70px; margin: auto" src="front/img/products/' + response['cartItem'].options.images[0].path + '" alt=""></td>\n' +
+                    '    <td class="si-pic"><img style="height: 70px; margin: auto" src="front/img/products/' + (imagePath) + '" alt=""></td>\n' +
                     '    <td class="si-text">\n' +
                     '        <div class="product-selected">\n' +
                     '            <p>$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty + '</p>\n' +

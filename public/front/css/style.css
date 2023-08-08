@@ -34,7 +34,7 @@
 html,
 body {
 	height: 100%;
-	font-family: "Muli", sans-serif;
+	/*font-family: "Muli", sans-serif;*/
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
@@ -286,6 +286,7 @@ ol {
 
 .ht-right .lan-selector .ddcommon .ddTitle .ddTitleText img {
 	padding-right: 5px;
+    display: inline;
 }
 
 .ht-right .lan-selector .ddcommon .ddTitle .ddTitleText span {
@@ -325,6 +326,7 @@ ol {
 
 .ht-right .lan-selector .ddcommon .ddChild ul li img {
 	padding-right: 10px;
+    display: inline;
 }
 
 .ht-right .lan-selector .ddcommon .ddChild ul li span {
@@ -417,15 +419,21 @@ ol {
 }
 
 .inner-header .logo {
-	padding: 12px 0;
+	/*padding: 12px 0;*/
 }
 
 .inner-header .logo a {
 	display: inline-block;
 }
 
+.logo-row {
+    padding: 0 !important;
+}
+
 .inner-header .advanced-search {
 	height: 50px;
+    margin-left: 24px;
+    margin-right: 33px;
 	border: 1px solid #ebebeb;
 }
 
@@ -464,7 +472,7 @@ ol {
 }
 
 .inner-header .advanced-search .input-group {
-	max-width: 70%;
+	/*max-width: 70%;*/
 	height: 100%;
 }
 
@@ -475,6 +483,7 @@ ol {
 	font-size: 16px;
 	color: #000000;
 	padding-left: 20px;
+    padding-right: 60px;
 }
 
 .inner-header .advanced-search .input-group button {
