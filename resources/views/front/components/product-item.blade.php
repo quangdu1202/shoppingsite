@@ -4,9 +4,6 @@
         @if($product->discount != null)
             <div class="sale">Sale</div>
         @endif
-        <div class="icon">
-            <i class="icon_heart_alt"></i>
-        </div>
         <ul>
             <li class="w-icon active"><a href="javascript:addToCart({{$product->id}})"><i class="icon_bag_alt"></i></a></li>
             <li class="quick-view"><a href="shop/product/{{$product->id}}">+ Quick View</a></li>

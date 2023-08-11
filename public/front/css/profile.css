@@ -26,7 +26,7 @@ body {
 .profile-nav .user-heading.round a  {
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    border: 10px solid rgba(255,255,255,0.3);
+    border: 10px solid rgba(255, 255, 255, 0.75);
     display: inline-block;
 }
 
@@ -39,12 +39,13 @@ body {
 
 .profile-nav .user-heading h1 {
     font-size: 22px;
-    font-weight: 300;
+    font-weight: 700;
     margin-bottom: 5px;
 }
 
 .profile-nav .user-heading p {
     font-size: 12px;
+    color: black;
 }
 
 .profile-nav ul {

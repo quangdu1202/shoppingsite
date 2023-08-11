@@ -20,8 +20,8 @@
 
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
-                    <li><a href="#"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-warning pull-right r-activity">9</span></a></li>
-                    <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                    <li><a href="#"> <i class="fa fa-calendar"></i> Orders <span class="label label-warning pull-right r-activity">9</span></a></li>
+                    <li><a href="#"> <i class="fa fa-edit"></i> Addresses</a></li>
                 </ul>
             </div>
         </div>
@@ -48,37 +48,40 @@
 {{--                    </ul>--}}
 {{--                </footer>--}}
 {{--            </div>--}}
-            <div class="panel">
-                <div class="bio-graph-heading">
-                    {{$user->description ?? '-'}}
-                </div>
-                <div class="panel-body bio-graph-info">
-                    <h1>Bio Graph</h1>
-                    <div class="row">
-                        <div class="bio-row">
-                            <p><span>First Name </span>: {{$user->name}}</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Last Name </span>: {{$user->lastname}}</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Country </span>: {{$user->country}}</p>
-                        </div>
-{{--                        <div class="bio-row">--}}
-{{--                            <p><span>Occupation </span>: {{$user->name}}</p>--}}
-{{--                        </div>--}}
-                        <div class="bio-row">
-                            <p><span>Email </span>: {{$user->email}}</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Phone </span>: {{$user->phone}}</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Created date</span>: {{$user->created_at}}</p>
+            <form action="" method="post">
+                @csrf
+                <div class="panel">
+                    <div class="bio-graph-heading">
+                        {{$user->description ?? '-'}}
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <h1>Bio Graph</h1>
+                        <div class="row">
+                            <div class="bio-row">
+                                <p><label for="name">First Name </label>: <input id="name" type="text" value="{{$user->name}}"></p>
+                            </div>
+                            <div class="bio-row">
+                                <p><label>Last Name </label>: <input id="name" type="text" value="{{$user->lastname}}"></p>
+                            </div>
+                            <div class="bio-row">
+                                <p><label>Country </label>: <input id="name" type="text" value="{{$user->country}}"></p>
+                            </div>
+                            <div class="bio-row">
+                                <p><label>Email </label>: <input id="name" type="text" value="{{$user->email}}"></p>
+                            </div>
+                            <div class="bio-row">
+                                <p><label>Phone </label>: <input id="name" type="text" value="{{$user->phone}}"></p>
+                            </div>
+                            <div class="bio-row">
+                                <p><label>Created date</label>: <input id="name" type="text" value="{{$user->created_at}}"></p>
+                            </div>
+                            <div class="bio-row" style="width: 100% !important;">
+                                <button type="submit" class="save-profile-btn">SAVE</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div>
                 <div class="row">
                     <div class="col-md-6">

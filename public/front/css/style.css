@@ -688,6 +688,7 @@ ol {
 }
 
 .nav-item .nav-depart {
+    margin-left: 49px;
 	float: left;
 }
 
@@ -2497,21 +2498,7 @@ ol {
 	text-transform: uppercase;
 }
 
-.product-details .pd-share {
-	overflow: hidden;
-}
-
-.product-details .pd-share .p-code {
-	font-size: 16px;
-	color: #252525;
-	float: left;
-}
-
-.product-details .pd-share .pd-social {
-	float: right;
-}
-
-.product-details .pd-share .pd-social a {
+.product-details .pd-share a {
 	display: inline-block;
 	color: #252525;
 	font-size: 14px;
@@ -2520,6 +2507,11 @@ ol {
 
 .product-tab {
 	padding-top: 60px;
+}
+
+.tab-item ul li {
+    width: 33%;
+    position: relative;
 }
 
 .tab-item ul li:nth-child(1) a {
@@ -2536,11 +2528,13 @@ ol {
 
 .tab-item ul li a {
 	display: inline-block;
+    text-align: center;
 	font-size: 16px;
 	font-weight: 700;
 	color: #b2b2b2;
 	text-transform: uppercase;
-	padding: 18px 61px;
+    width: 100%;
+	padding: 18px 0px;
 	position: relative;
 	border-top: 1px solid #ebebeb;
 	border-left: 1px solid #ebebeb;
@@ -4188,7 +4182,7 @@ ol {
 }
 
 .login-form .group-input .gi-more label .checkmark:after {
-	left: 2px;
+	left: -2px;
 	top: -2px;
 	width: 13px;
 	height: 6px;
@@ -4205,6 +4199,26 @@ ol {
 	margin-top: -2px;
 	font-size: 14px;
 	color: #6B6B6B;
+}
+
+.save-profile-btn {
+    position: relative;
+    display: block;
+    width: 140px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: #1c89ff;
+    border: solid 1px transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+.save-profile-btn:hover {
+    /*background-color: transparent;*/
+    /*border-color: #fff;*/
+    transition: all 0.1s ease-in-out;
 }
 
 /* ------------------------------ Responsive Media Styles ---------------------------- */

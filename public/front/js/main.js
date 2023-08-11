@@ -228,7 +228,7 @@
     });
 
     $('.product-pic-zoom').zoom({
-    magnify: 2
+        magnify: 1.2
     });
 
     /*-------------------

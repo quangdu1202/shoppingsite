@@ -49,9 +49,15 @@
             <div class="ht-right">
 
                 @if(Auth::check())
-                    <a href="/account/logout" class="login-panel"><i class="fa fa-user"></i>{{Auth::user()->name}} - Logout</a>
+                    <a href="/account/logout" class="login-panel">
+                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                        {{Auth::user()->name}} - Logout
+                    </a>
                 @else
-                    <a href="/account/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <a href="/account/login" class="login-panel">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        Login
+                    </a>
                 @endif
 
                 <div class="lan-selector">
@@ -61,10 +67,10 @@
                     </select>
                 </div>
                 <div class="top-social">
-                    <a href="#"><i class="ti-facebook"></i></a>
-                    <a href="#"><i class="ti-twitter"></i></a>
-                    <a href="#"><i class="ti-linkedin"></i></a>
-                    <a href="#"><i class="ti-github"></i></a>
+{{--                    <a href="#"><i class="ti-facebook"></i></a>--}}
+{{--                    <a href="#"><i class="ti-twitter"></i></a>--}}
+{{--                    <a href="#"><i class="ti-linkedin"></i></a>--}}
+                    <a href="https://github.com/quangm2k2/webprodn4"><i class="ti-github"></i></a>
                 </div>
             </div>
         </div>
@@ -93,14 +99,12 @@
                 <div class="col-lg-2 col-md-2 text-right">
                     <ul class="nav-right">
                         <li class="heart-icon">
-                            <a href="#">
-                                <i class="icon_heart_alt"></i>
-                                <span>1</span>
-                            </a>
+                            <a href="account/profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z"/></svg>                            </a>
                         </li>
                         <li class="cart-icon">
                             <a href="/cart">
-                                <i class="icon_bag_alt"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                                 <span class="cart-count">{{Cart::count()}}</span>
                             </a>
                             <div class="cart-hover">
@@ -163,23 +167,17 @@
                 <ul>
                     <li class="{{(request()->segment(1)=='')?'active':''}}"><a href="/">Home</a></li>
                     <li class="{{(request()->segment(1)=='shop')?'active':''}}"><a href="/shop">Shop</a></li>
-                    <li><a href="">Collection</a>
+                    <li class="{{(request()->segment(1)=='blog')?'active':''}}"><a href="/blog">Blog</a></li>
+                    <li class="{{(request()->segment(1)=='contact')?'active':''}}"><a href="/contact">Contact</a></li>
+                    <li class="{{(request()->segment(1)=='faq')?'active':''}}"><a href="/faq">FAQ</a></li>
+                    <li><a href="">OTHERS</a>
                         <ul class="dropdown">
-                            <li><a href="">Men's</a></li>
-                            <li><a href="">Women's</a></li>
-                            <li><a href="">Kid's</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="">Pages</a>
-                        <ul class="dropdown">
-                            <li><a href="blog-details.html">Blog Details</a></li>
                             <li><a href="/cart">Shopping Cart</a></li>
                             <li><a href="/checkout">Checkout</a></li>
-                            <li><a href="/faq">FAQ</a></li>
-                            <li><a href="/account/register">Register</a></li>
-                            <li><a href="/account/login">Login</a></li>
+                            @if(!Auth::check())
+                                <li><a href="/account/register">Register</a></li>
+                                <li><a href="/account/login">Login</a></li>
+                            @endif
                         </ul>
                     </li>
                 </ul>

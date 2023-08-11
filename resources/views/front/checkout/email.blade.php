@@ -81,7 +81,7 @@
                             </td>
                         @endif
 
-                        @if($order->payment_type == "paypal")
+                        @if($order->payment_type == "vnpay")
                             <td class="pl-3" style=" padding-left:15px;">
                                 <span class="d-inline"
                                       style="color:#424853; font-family:trebuchet,sans-serif; font-size:16px; font-weight:normal; line-height:22px;">

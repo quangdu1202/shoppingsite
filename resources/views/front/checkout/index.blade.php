@@ -114,9 +114,9 @@
                                         </label>
                                     </div>
                                     <div class="pc-item">
-                                        <label for="pc-paypal">
-                                            Paypal
-                                            <input type="radio" name="payment_type" value="paypal" id="pc-paypal">
+                                        <label for="pc-vnpay">
+                                            VN PAY
+                                            <input type="radio" name="payment_type" value="vnpay" id="pc-vnpay">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>

@@ -7,10 +7,10 @@
     <section class="product-shop spad page-details">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    @include('front.shop.components.product-sidebar-filter')
-                </div>
-                <div class="col-lg-9">
+{{--                <div class="col-lg-3">--}}
+{{--                    @include('front.shop.components.product-sidebar-filter')--}}
+{{--                </div>--}}
+                <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
@@ -36,7 +36,6 @@
                                 <div class="pd-title">
                                     <span>{{$product->tag}}</span>
                                     <h3>{{$product->name}}</h3>
-                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
                                 <div class="pd-rating">
                                     @for($i = 1; $i <= 5; $i++)
@@ -86,16 +85,13 @@
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIES: </span>{{$product->productCategory->name}}</li>
                                     <li><span>TAGS: </span>{{$product->tag}}</li>
-                                </ul>
-                                <div class="pd-share">
-                                    <div class="p-code">SKU: {{$product->sku}}</div>
-                                    <div class="pd-social">
-                                        <span>Share:</span>
+                                    <li><span>SKU: </span>{{$product->sku}}</li>
+                                    <li class="pd-share"><span>Share: </span>
                                         <a href="#"><i class="ti-facebook"></i></a>
                                         <a href="#"><i class="ti-twitter"></i></a>
                                         <a href="#"><i class="ti-instagram"></i></a>
-                                    </div>
-                                </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
