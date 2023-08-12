@@ -1,6 +1,6 @@
 ## <p align="center"><a href="http://webn4.ddns.net">Truy cập trang web</a></p>
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://lh3.googleusercontent.com/drive-viewer/AITFw-yNG70Y-j3U_E50C26BCP7SZirl9-6Js27OamDNAEVYfIqRArw2RM_ptWf2DTpzNepPFEQjPDE4uUtQsE1WwgdaRMCt=w2560-h1422" width="400"></a><a href="https://laravel.com" target="_blank"><img src="https://lh3.googleusercontent.com/drive-viewer/AITFw-wQ4uiR86Rv4e5LxyPFSU88DmrzupH2BKhnpwpndohp-lqdL4pPscdWHXO4otieHZfjV08NVTrV8eucU1MV5Fn_kCeHLw=w2560-h1422" width="400"></a></p>
+<p align="center"><a href="http://webn4.ddns.net" target="_blank"><img src="https://lh3.googleusercontent.com/drive-viewer/AITFw-yNG70Y-j3U_E50C26BCP7SZirl9-6Js27OamDNAEVYfIqRArw2RM_ptWf2DTpzNepPFEQjPDE4uUtQsE1WwgdaRMCt=w2560-h1422" width="400"></a><a href="https://www.haui.edu.vn/vn" target="_blank"><img src="https://lh3.googleusercontent.com/drive-viewer/AITFw-wQ4uiR86Rv4e5LxyPFSU88DmrzupH2BKhnpwpndohp-lqdL4pPscdWHXO4otieHZfjV08NVTrV8eucU1MV5Fn_kCeHLw=w2560-h1422" width="400"></a></p>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
