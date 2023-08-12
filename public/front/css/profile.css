@@ -15,6 +15,10 @@ body {
 }
 
 .profile-nav .user-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: #1067c6;
     color: #fff;
     border-radius: 4px 4px 0 0;
@@ -23,21 +27,39 @@ body {
     text-align: center;
 }
 
-.profile-nav .user-heading.round a  {
+.profile-nav .user-heading.round #cover  {
+    /*align-items: center;*/
+    /*border-radius: 50%;*/
+    /*-webkit-border-radius: 50%;*/
+    /*border: 10px solid rgba(255, 255, 255, 0.75);*/
+    /*display: inline-block;*/
+    width: 152px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     border: 10px solid rgba(255, 255, 255, 0.75);
-    display: inline-block;
+    /* Thêm khoảng cách giữa hình ảnh và viền */
+    padding: 10px;
 }
 
-.profile-nav .user-heading a img {
+.profile-nav .user-heading #cover label {
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-nav .user-heading #cover label img {
     width: 112px;
     height: 112px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
 }
 
-.profile-nav .user-heading a svg {
+.profile-nav .user-heading #cover svg {
     width: 112px;
     height: 112px;
     border-radius: 50%;
@@ -120,7 +142,7 @@ body {
 
 .bio-graph-heading {
     background: #1067c6;
-    color: #000000;
+    color: whitesmoke;
     text-align: center;
     font-style: italic;
     padding: 40px 110px;
@@ -128,6 +150,15 @@ body {
     -webkit-border-radius: 4px 4px 0 0;
     font-size: 16px;
     font-weight: 300;
+}
+
+
+.bio-graph-heading #description {
+    color: whitesmoke;
+    width: 100%;
+    text-align: center;
+    background: none;
+    overflow: hidden;
 }
 
 .bio-graph-info {
@@ -391,4 +422,25 @@ ul.summary-list > li:last-child  {
 
 .activity-desk .album a:last-child{
     margin-right: 0px;
+}
+
+.save-profile-btn {
+    justify-content: center;
+    align-items: center;
+    /*position: relative;*/
+    display: flex;
+    width: 140px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: #1c89ff;
+    border: solid 1px transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.save-profile-btn:hover {
+    color: #ffde00;
 }

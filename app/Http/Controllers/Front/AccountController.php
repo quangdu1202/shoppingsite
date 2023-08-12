@@ -97,6 +97,7 @@ class AccountController extends Controller
     public function updateProfile()
     {
         $user = Auth::user();
-        return view('front.account.profile', compact('user'));
+//        return view('front.account.profile', compact('user'));
+        return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
     }
 }

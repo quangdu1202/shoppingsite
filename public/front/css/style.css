@@ -4206,6 +4206,7 @@ ol {
 }
 
 .save-profile-btn {
+    text-align: center;
     position: relative;
     display: block;
     width: 140px;
