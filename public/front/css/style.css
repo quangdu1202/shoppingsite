@@ -532,13 +532,13 @@ ol {
 	margin-left: 15px;
 }
 
-.inner-header .nav-right li.heart-icon a {
+.inner-header .nav-right li.profile-icon a {
 	color: #252525;
 	position: relative;
 	display: inline-block;
 }
 
-.inner-header .nav-right li.heart-icon a span {
+.inner-header .nav-right li.profile-icon a span {
 	position: absolute;
 	right: -8px;
 	top: -1px;
@@ -2219,7 +2219,7 @@ ol {
 	font-weight: 700;
 }
 
-.product-details .pd-title .heart-icon {
+.product-details .pd-title .profile-icon {
 	color: #252525;
 	font-size: 18px;
 	position: absolute;

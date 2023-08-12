@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\User\UserServiceInterface;
+use App\Utilities\Common;
 use App\Utilities\Constant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,10 +95,37 @@ class AccountController extends Controller
         $user = Auth::user();
         return view('front.account.profile', compact('user'));
     }
-    public function updateProfile()
+    public function updateProfile(Request $request)
     {
+        $data = $request->all();
+//        $data = [
+//            'name' => '',
+//            'lastname' => '',
+//            'email' => '',
+//            'avatar' => '',
+//            'description' => '',
+//            'country' => ''
+//        ];
         $user = Auth::user();
-//        return view('front.account.profile', compact('user'));
-        return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+//        var_dump($data);
+        if ($request->hasFile('image')) {
+            $data['avatar'] = Common::uploadFile($request->file('image'), 'front/img/user/');
+
+            $file_name_old = $request->get('image_old');
+            if ($file_name_old != '') {
+                if(file_exists('front/img/user/' .  $file_name_old)) {
+                    unlink('front/img/user/' .  $file_name_old);
+                }
+            }
+        }
+
+        $this->userService->update($data, $user->id);
+        return redirect('account/profile');
+////
+//
+//
+//
+////        return view('front.account.profile', compact('user'));
+//        return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
     }
 }

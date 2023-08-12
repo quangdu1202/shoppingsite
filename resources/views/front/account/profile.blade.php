@@ -57,32 +57,10 @@
                 </div>
             </div>
             <div class="profile-info col-md-9">
-    {{--            <div class="panel">--}}
-    {{--                <form>--}}
-    {{--                    <textarea placeholder="Whats in your mind today?" rows="2" class="form-control input-lg p-text-area"></textarea>--}}
-    {{--                </form>--}}
-    {{--                <footer class="panel-footer">--}}
-    {{--                    <button class="btn btn-warning pull-right">Post</button>--}}
-    {{--                    <ul class="nav nav-pills">--}}
-    {{--                        <li>--}}
-    {{--                            <a href="#"><i class="fa fa-map-marker"></i></a>--}}
-    {{--                        </li>--}}
-    {{--                        <li>--}}
-    {{--                            <a href="#"><i class="fa fa-camera"></i></a>--}}
-    {{--                        </li>--}}
-    {{--                        <li>--}}
-    {{--                            <a href="#"><i class=" fa fa-film"></i></a>--}}
-    {{--                        </li>--}}
-    {{--                        <li>--}}
-    {{--                            <a href="#"><i class="fa fa-microphone"></i></a>--}}
-    {{--                        </li>--}}
-    {{--                    </ul>--}}
-    {{--                </footer>--}}
-    {{--            </div>--}}
                     <div class="panel">
                         <div class="bio-graph-heading">
 {{--                            <input id="description" type="text" value="{{$user->description}}">--}}
-                            <textarea id="description" rows="1" placeholder="Type here...">{{$user->description}}</textarea>
+                            <textarea name="description" id="description" rows="1" placeholder="Type here...">{{$user->description}}</textarea>
                             <script>
                                 document.getElementById("description").addEventListener("input", function () {
                                     this.style.height = "auto";
@@ -94,26 +72,48 @@
                             <h1>Bio Graph</h1>
                             <div class="row">
                                 <div class="bio-row">
-                                    <p><label for="firstname">First Name </label>: <input id="firstname" type="text" value="{{$user->name}}"></p>
+                                    <p><label for="firstname">First Name </label>: <input name="name" type="text" value="{{$user->name}}"></p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><label for="lastname">Last Name </label>: <input id="lastname" type="text" value="{{$user->lastname}}"></p>
+                                    <p><label for="lastname">Last Name </label>: <input name="lastname" type="text" value="{{$user->lastname}}"></p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><label for="country">Country </label>: <input id="country" type="text" value="{{$user->country}}"></p>
+                                    <p><label>Company Name</label>: <input name="company_name" type="text" value="{{$user->company_name}}"></p>
+                                </div>
+                                <div class="bio-row" id="email-row">
+                                    <p><label for="email">Email </label>: <input id="email" style="width: 75% !important;" name="email" type="text" value="{{$user->email}}"></p>
+                                </div>
+                                <script>
+                                    $(document).ready(function() {
+                                        var initialContent = $('#email').val().trim();
+                                        $('#email').on('input', function() {
+                                            var currentContent = $(this).val().trim();
+                                            if (currentContent !== initialContent) {
+                                                $('#email-row').attr('data-content', initialContent + ' (changed)');
+                                            } else {
+                                                $('#email-row').removeAttr('data-content');
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <div class="bio-row">
+                                    <p><label for="phone">Phone </label>: <input name="phone" type="text" value="{{$user->phone}}"></p>
                                 </div>
                                 <div class="bio-row">
-                                    <p><label for="email">Email </label>: <input id="email" type="text" value="{{$user->email}}"></p>
-                                </div>
-                                <div class="bio-row">
-                                    <p><label for="phone">Phone </label>: <input id="phone" type="text" value="{{$user->phone}}"></p>
-                                </div>
-                                <div class="bio-row">
-                                    <p><label>Created date</label>: <input disabled type="text" value="{{$user->created_at}}"></p>
+                                    <p><label for="country">Country </label>: <input name="country" type="text" value="{{$user->country}}"></p>
                                 </div>
                                 <div class="bio-row" style="width: 100% !important;">
-{{--                                    <button type="submit" class="save-profile-btn">SAVE</button>--}}
-                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="save-profile-btn" style="text-decoration: none;">SAVE</a>
+                                    <p><label for="street_address">Street </label>: <input style="width: 75% !important;" name="street_address" type="text" value="{{$user->street_address}}"></p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><label for="town_city">Town/City </label>: <input name="town_city" type="text" value="{{$user->town_city}}"></p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><label for="postcode_zip">Zip </label>: <input name="postcode_zip" type="text" value="{{$user->postcode_zip}}"></p>
+                                </div>
+                                <div class="bio-row" style="width: 100% !important;">
+                                    <button type="submit" class="save-profile-btn">SAVE</button>
+{{--                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="save-profile-btn" style="text-decoration: none;">SAVE</a>--}}
                                 </div>
                             </div>
                         </div>

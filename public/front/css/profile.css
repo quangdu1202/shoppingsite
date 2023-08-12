@@ -183,10 +183,28 @@ body {
     display: inline-block;
 }
 
+.bio-row p input {
+
+}
+
 .bio-row p input:focus {
     background-color: lightblue;
 }
 
+#email-row {
+    position: relative;
+}
+
+#email-row::after {
+    content: attr(data-content);
+    display: block;
+    margin-top: 4px;
+    color: red;
+}
+
+.bio-row p input.changed {
+    background-color: #ffde00;
+}
 .bio-row p input:disabled {
     background: none;
 }
