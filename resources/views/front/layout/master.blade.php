@@ -197,32 +197,40 @@
         <div class="logo-carousel owl-carousel">
             <div class="logo-item">
                 <div class="tablecell-inner">
-                    <img src="front/img/logo-carousel/logo-1.png" alt="">
+                    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a50b3ef6d5af89592b4_logo-backmarket.svg" loading="lazy" width="172" height="22" alt="BackMarket Logo" class="companies-list-area-logo">
                 </div>
             </div>
             <div class="logo-item">
                 <div class="tablecell-inner">
-                    <img src="front/img/logo-carousel/logo-2.png" alt="">
+                    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a504c38c8873d8fc0fb_logo-dolead.svg" loading="lazy" width="128" height="22" alt="Dolead logo" class="dolead-logo companies-list-area-logo">
                 </div>
             </div>
             <div class="logo-item">
                 <div class="tablecell-inner">
-                    <img src="front/img/logo-carousel/logo-3.png" alt="">
+                    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a506262781421871d8d_logo-trustfolio.svg" loading="lazy" width="133" height="30" alt="Trustfolio logo" class="trustfolio-logo companies-list-area-logo">
                 </div>
             </div>
             <div class="logo-item">
                 <div class="tablecell-inner">
-                    <img src="front/img/logo-carousel/logo-4.png" alt="">
+                    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a50753bc64f543810b5_logo-karos.svg" loading="lazy" width="145" height="26" alt="Karos logo" class="karos-logo companies-list-area-logo">
                 </div>
             </div>
             <div class="logo-item">
                 <div class="tablecell-inner">
-                    <img src="front/img/logo-carousel/logo-5.png" alt="">
+                    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/62593e2f8d74f06cce66d276_logo-doordash.svg" loading="lazy" width="216" height="25" alt="Logo Doordash" class="companies-list-area-logo">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{{--<div class="companies-list-area">--}}
+{{--    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a50b3ef6d5af89592b4_logo-backmarket.svg" loading="lazy" width="172" height="22" alt="BackMarket Logo" class="companies-list-area-logo">--}}
+{{--    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a504c38c8873d8fc0fb_logo-dolead.svg" loading="lazy" width="128" height="22" alt="Dolead logo" class="dolead-logo companies-list-area-logo">--}}
+{{--    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a506262781421871d8d_logo-trustfolio.svg" loading="lazy" width="133" height="30" alt="Trustfolio logo" class="trustfolio-logo companies-list-area-logo">--}}
+{{--    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/621f6a50753bc64f543810b5_logo-karos.svg" loading="lazy" width="145" height="26" alt="Karos logo" class="karos-logo companies-list-area-logo">--}}
+{{--    <img src="https://uploads-ssl.webflow.com/6214efb2d4b5d94158f2ff03/62593e2f8d74f06cce66d276_logo-doordash.svg" loading="lazy" width="216" height="25" alt="Logo Doordash" class="companies-list-area-logo">--}}
+{{--</div>--}}
 <!-- Partner Logo Section end -->
 
 <!-- Footer Section begin -->

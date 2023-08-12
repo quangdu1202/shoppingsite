@@ -12,7 +12,11 @@
             <div class="panel">
                 <div class="user-heading round">
                     <a href="#">
-                        <img src="front/img/user/{{$user->avatar ?? 'default-avatar.jpg'}}" alt="">
+                        @if($user->avatar != '')
+                            <img src="front/img/user/{{$user->avatar}}" alt="">
+                        @else
+                            <img src="front/img/user/default2.jpg" alt="">
+                        @endif
                     </a>
                     <h1>{{$user->name . ' ' . $user->lastname}}</h1>
                     <p>{{$user->email}}</p>
@@ -58,22 +62,22 @@
                         <h1>Bio Graph</h1>
                         <div class="row">
                             <div class="bio-row">
-                                <p><label for="name">First Name </label>: <input id="name" type="text" value="{{$user->name}}"></p>
+                                <p><label for="firstname">First Name </label>: <input id="firstname" type="text" value="{{$user->name}}"></p>
                             </div>
                             <div class="bio-row">
-                                <p><label>Last Name </label>: <input id="name" type="text" value="{{$user->lastname}}"></p>
+                                <p><label for="lastname">Last Name </label>: <input id="lastname" type="text" value="{{$user->lastname}}"></p>
                             </div>
                             <div class="bio-row">
-                                <p><label>Country </label>: <input id="name" type="text" value="{{$user->country}}"></p>
+                                <p><label for="country">Country </label>: <input id="country" type="text" value="{{$user->country}}"></p>
                             </div>
                             <div class="bio-row">
-                                <p><label>Email </label>: <input id="name" type="text" value="{{$user->email}}"></p>
+                                <p><label for="email">Email </label>: <input id="email" type="text" value="{{$user->email}}"></p>
                             </div>
                             <div class="bio-row">
-                                <p><label>Phone </label>: <input id="name" type="text" value="{{$user->phone}}"></p>
+                                <p><label for="phone">Phone </label>: <input id="phone" type="text" value="{{$user->phone}}"></p>
                             </div>
                             <div class="bio-row">
-                                <p><label>Created date</label>: <input id="name" type="text" value="{{$user->created_at}}"></p>
+                                <p><label>Created date</label>: <input disabled type="text" value="{{$user->created_at}}"></p>
                             </div>
                             <div class="bio-row" style="width: 100% !important;">
                                 <button type="submit" class="save-profile-btn">SAVE</button>
