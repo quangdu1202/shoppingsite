@@ -532,6 +532,10 @@ ol {
 	margin-left: 15px;
 }
 
+.inner-header .nav-right li:first-child {
+    margin: 0;
+}
+
 .inner-header .nav-right li.profile-icon a {
 	color: #252525;
 	position: relative;
