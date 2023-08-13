@@ -155,7 +155,7 @@
                                                 Subtotal
                                             </td>
                                             <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                                {{$subtotal}}
+                                                ${{$subtotal}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -163,7 +163,7 @@
                                                 TOTAL
                                             </td>
                                             <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
-                                                {{$total}}
+                                                ${{$total}}
                                             </td>
                                         </tr>
                                     </table>
