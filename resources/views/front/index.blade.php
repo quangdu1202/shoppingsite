@@ -6,48 +6,36 @@
     <!-- Hero Section begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="front/img/hero-1.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <span>Bag, kids</span>
-                            <h1>Back Friday</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos blanditiis ipsum laboriosam perspiciatis laborum labore officiis doloremque alias dolorum, molestiae expedita itaque voluptatum! A distinctio temporibus, nesciunt minima tempore eveniet?</p>
-                            <a href="#" class="primary-btn">Shop Now</a>
-                        </div>
-                        <div class="off-card">
-                            <h2>Sale <span>50%</span></h2>
-                        </div>
-                    </div>
+            <a href="shop/category/Kids">
+                <div class="single-hero-items set-bg" data-setbg="front/img/hero3.png">
                 </div>
-            </div>
-            <div class="single-hero-items set-bg" data-setbg="front/img/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <span>Bag, kids</span>
-                            <h1>Back Friday</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos blanditiis ipsum laboriosam perspiciatis laborum labore officiis doloremque alias dolorum, molestiae expedita itaque voluptatum! A distinctio temporibus, nesciunt minima tempore eveniet?</p>
-                            <a href="#" class="primary-btn">Shop Now</a>
-                        </div>
-                        <div class="off-card">
-                            <h2>Sale <span>50%</span></h2>
-                        </div>
-                    </div>
+            </a>
+            <a href="shop/category/Men">
+                <div class="single-hero-items set-bg" data-setbg="front/img/hero2.webp">
+                    {{--                <div class="container">--}}
+                    {{--                    <div class="row">--}}
+                    {{--                        <div class="col-lg-5 offset-7">--}}
+                    {{--                            <span>Men's style</span>--}}
+                    {{--                            <h1>ABC DEF</h1>--}}
+                    {{--                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos blanditiis ipsum laboriosam perspiciatis laborum labore officiis doloremque alias dolorum, molestiae expedita itaque voluptatum! A distinctio temporibus, nesciunt minima tempore eveniet?</p>--}}
+                    {{--                            <a href="#" class="primary-btn">Shop Now</a>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
+                    {{--                </div>--}}
                 </div>
-            </div>
-            <div class="single-hero-items set-bg" data-setbg="front/img/hero-3.jpg">
+            </a>
+            <div class="single-hero-items set-bg" data-setbg="front/img/hero1_auto_x2.png">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag, kids</span>
-                            <h1>Back Friday</h1>
+                            <span>Featured, Women</span>
+                            <h1>Super Sales</h1>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos blanditiis ipsum laboriosam perspiciatis laborum labore officiis doloremque alias dolorum, molestiae expedita itaque voluptatum! A distinctio temporibus, nesciunt minima tempore eveniet?</p>
-                            <a href="#" class="primary-btn">Shop Now</a>
+                            <a href="shop/category/Women" class="primary-btn">Shop Now</a>
                         </div>
-                        <div class="off-card">
-                            <h2>Sale <span>50%</span></h2>
-                        </div>
+{{--                        <div class="off-card">--}}
+{{--                            <h2>Sale <span>50%</span></h2>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -61,25 +49,25 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="front/img/banner-1.jpg" alt="">
+                        <img src="front/img/banner-1.png" alt="">
                         <div class="inner-text">
-                            <h4>Men's</h4>
+                            <a id="btn-men" href="shop/category/Men">Men's</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="front/img/banner-2.jpg" alt="">
+                        <img src="front/img/banner-2.png" alt="">
                         <div class="inner-text">
-                            <h4>Women's</h4>
+                            <a id="btn-women" href="shop/category/Women">Women's</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="front/img/banner-3.jpg" alt="">
+                        <img src="front/img/banner-3.png" alt="">
                         <div class="inner-text">
-                            <h4>Kid's</h4>
+                            <a id="btn-kids" href="shop/category/Kids">Kid's</a>
                         </div>
                     </div>
                 </div>
@@ -90,10 +78,10 @@
 
     <!-- Women Banner Section begin -->
     <div class="women-banner spad">
-        <div class="container-fluid">
+        <div class="container-fluid women-promo">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="front/img/products/women-large.jpg">
+                    <div class="product-large set-bg" data-setbg="front/img/women-promo.png">
                         <h2>Women's</h2>
                         <a href="#">Discover more</a>
                     </div>
@@ -176,7 +164,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
-                    <div class="product-large set-bg" data-setbg="front/img/products/man-large.jpg">
+                    <div class="product-large set-bg" data-setbg="front/img/men-promo.png">
                         <h2>Men's</h2>
                         <a href="#">Discover more</a>
                     </div>
@@ -192,7 +180,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>From The Blog</h2>
+                        <h2>Our News</h2>
                     </div>
                 </div>
             </div>
