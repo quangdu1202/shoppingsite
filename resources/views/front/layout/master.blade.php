@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="select-total">
                                     <span>Total: </span>
-                                    <h5>${{Cart::total()}}</h5>
+                                    <h5><b>${{Cart::total()}}</b></h5>
                                 </div>
                                 <div class="select-button">
                                     <a href="/cart" class="primary-btn view-cart">VIEW CART</a>
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="cart-price">${{Cart::total()}}</li>
+                        <li class="cart-price"><b>${{Cart::total()}}</b></li>
                     </ul>
                 </div>
             </div>

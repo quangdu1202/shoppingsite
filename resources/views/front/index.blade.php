@@ -108,17 +108,9 @@
     <!-- Women Banner Section end -->
 
     <!-- Deal of the Week Section begin -->
-    <section class="deal-of-week set-bg spad" data-setbg="front/img/time-bg.jpg">
+    <section id="deal-section" class="deal-of-week set-bg spad" data-setbg="front/img/special-promo.png">
         <div class="container">
             <div class="col-lg-6 text-center">
-                <div class="section-title">
-                    <h2>Deal Of The Week</h2>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea iste blanditiis aperiam rerum officiis dolorum quaerat mollitia sapiente soluta ut possimus, enim doloremque, aut non fuga molestiae hic. Illum, consequatur?</p>
-                    <div class="product-price">
-                        $987.65
-                        <span>/ Handbag</span>
-                    </div>
-                </div>
                 <div class="countdown-timer" id="countdown">
                     <div class="cd-item">
                         <span>56</span>
@@ -137,7 +129,7 @@
                         <p>Seconds</p>
                     </div>
                 </div>
-                <a class="primary-btn" href="">Shop Now</a>
+                <a class="primary-btn" href="shop">Shop Now</a>
             </div>
         </div>
     </section>
@@ -252,4 +244,13 @@
             alert('{{ session('loggedInNotification') }}');
         </script>
     @endif
+    <script>
+        // Lấy tham chiếu đến phần tử section
+        var section = document.getElementById('deal-section');
+
+        // Thêm sự kiện click để chuyển hướng khi nhấn vào phần tử section
+        section.addEventListener('click', function() {
+            window.location.href = '/shop';
+        });
+    </script>
 @endsection
