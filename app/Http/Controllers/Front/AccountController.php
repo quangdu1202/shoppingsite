@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\User;
+use App\Services\Order\OrderServiceInterface;
 use App\Services\User\UserServiceInterface;
 use App\Utilities\Common;
 use App\Utilities\Constant;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,9 +18,11 @@ use Illuminate\Support\Facades\Hash;
 class AccountController extends Controller
 {
     private $userService;
-    public function __construct(UserServiceInterface $userService)
+    private $orderService;
+    public function __construct(UserServiceInterface $userService, OrderServiceInterface $orderService)
     {
         $this->userService = $userService;
+        $this->orderService = $orderService;
     }
 
     public function login()
@@ -93,7 +98,10 @@ class AccountController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return view('front.account.profile', compact('user'));
+
+        $orders = $this->orderService->searchAndPaginate('user_id', Auth::user()->id);
+
+        return view('front.account.profile', compact('user', 'orders'));
     }
     public function updateProfile(Request $request)
     {

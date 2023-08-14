@@ -1225,6 +1225,9 @@ ol {
 }
 
 .product-item .pi-pic {
+    display: flex;
+    align-items: center;
+    min-height: 262.5px;
 	overflow: hidden;
 	position: relative;
 }

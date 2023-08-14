@@ -94,13 +94,14 @@ body {
 }
 
 .profile-nav ul > li > a {
+    cursor: pointer;
     border-radius: 0;
     -webkit-border-radius: 0;
     color: #89817f;
     border-left: 5px solid #fff;
 }
 
-.profile-nav ul > li > a:hover, .profile-nav ul > li > a:focus, .profile-nav ul li.active  a {
+.profile-nav ul > li > a:hover, .profile-nav ul > li > a:focus, .profile-nav ul li a.active {
     background: #f8f7f5 !important;
     border-left: 5px solid #1067c6;
     color: #89817f !important;
@@ -461,4 +462,33 @@ ul.summary-list > li:last-child  {
 
 .save-profile-btn:hover {
     color: #ffde00;
+}
+
+.tabcontent {
+    display: none;
+}
+
+.table-responsive td {
+    vertical-align: middle !important;
+}
+
+.orders {
+    min-height: 475px;
+}
+
+.orders .row {
+    padding-top: 30px;
+}
+
+.orders .products {
+    width: 300px;
+}
+
+.orders .products .p-details {
+    display: flex;
+    align-items: center;
+}
+
+.orders .products .p-img {
+    float: left;
 }
