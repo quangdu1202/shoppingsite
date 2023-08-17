@@ -5,7 +5,7 @@
             <div class="sale">Sale</div>
         @endif
         <ul>
-            <li class="w-icon active"><a href="javascript:addToCart({{$product->id}})"><i class="icon_bag_alt"></i></a></li>
+            <li class="w-icon active"><a href="javascript:addToCart({{$product->id}}, false)"><i class="icon_bag_alt"></i></a></li>
             <li class="quick-view"><a href="shop/product/{{$product->id}}">+ Quick View</a></li>
             <li class="w-icon"><a href=""><i class="fa fa-random"></i></a></li>
         </ul>

@@ -7,6 +7,7 @@ use App\Services\Brand\BrandServiceInterface;
 use App\Services\Product\ProductServiceInterface;
 use App\Services\ProductCategory\ProductCategoryServiceInterface;
 use App\Services\ProductComment\ProductCommentServiceInterface;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,17 @@ class ShopController extends Controller
         $product = $this->productService->find($id);
         $relatedProducts = $this->productService->getRelatedProducts($product);
 
-        return view('front.shop.product', compact('product', 'relatedProducts', 'categories', 'brands'));
+        $cartItems = Cart::content();
+        $rowId = '';
+        $itemQTY = 1;
+        foreach ($cartItems as $cartItem) {
+            if($cartItem->id == $id) {
+                $rowId = $cartItem->rowId;
+                $itemQTY = $cartItem->qty;
+                break;
+            }
+        }
+        return view('front.shop.product', compact('product', 'relatedProducts', 'categories', 'brands', 'rowId', 'itemQTY'));
     }
 
     public function postComment(Request $request)

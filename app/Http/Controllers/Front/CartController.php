@@ -43,6 +43,7 @@ class CartController extends Controller
 //        dd(Cart::content());
             $response['count']  = Cart::count();
             $response['total'] = Cart::total();
+            $response['reloadPage'] =  true;
 
             return $response;
         }
@@ -52,6 +53,7 @@ class CartController extends Controller
     public function delete(Request $request)
     {
         if($request->ajax()) {
+            $response['itemName'] = $request->name;
             $response['cartItem'] = Cart::remove($request->rowId);
 
             $response['count']  = Cart::count();
@@ -71,11 +73,12 @@ class CartController extends Controller
     public function update(Request $request)
     {
         if ($request->ajax()) {
-            $response['cartItem'] = Cart::update($request->rowId, $request->qty);
+            $response['cartItem'] = Cart::update($request->rowId, $request->qty, $request->name);
 
             $response['count']  = Cart::count();
             $response['total'] = Cart::total();
             $response['subtotal'] = Cart::subtotal();
+            $response['reloadPage'] =  false;
 
             return $response;
         }

@@ -14,6 +14,10 @@
     <!-- Css Styles -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@1.0.0/dist/tailwind.min.css" rel="stylesheet">
 
+    <!-- Include Toastr library CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <link rel="stylesheet" href="front/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/themify-icons.css" type="text/css">
@@ -23,6 +27,7 @@
     <link rel="stylesheet" href="front/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="front/css/style.css" type="text/css">
+    <link rel="stylesheet" href="front/css/toastr.css" type="text/css">
     <link rel="stylesheet" href="front/css/empty-cart.css" type="text/css">
 </head>
 
@@ -124,7 +129,7 @@
                                                 </div>
                                             </td>
                                             <td class="si-close">
-                                                <i onclick="removeCartItem('{{$cartItem->rowId}}')" class="ti-close"></i>
+                                                <i onclick="removeCartItem('{{$cartItem->rowId}}', '{{$cartItem->name}}')" class="ti-close"></i>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -314,7 +319,7 @@
 <!-- Footer Section end -->
 <button id="scrollToTopBtn" title="Go to top">Top</button>
 <!-- Js Plugins -->
-<script src="front/js/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="front/js/bootstrap.min.js"></script>
 <script src="front/js/jquery-ui.min.js"></script>
 <script src="front/js/jquery.countdown.min.js"></script>
@@ -325,6 +330,9 @@
 <script src="front/js/owl.carousel.min.js"></script>
 <script src="front/js/main.js"></script>
 <script src="front/js/owlcarousel2-filter.min.js"></script>
+<!-- Include Toastr library JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stylus/0.59.0/stylus.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -345,6 +353,19 @@
             });
         });
     });
+
+    /*-------------------
+    Toast Notification
+    --------------------- */
+    toastr.options = {
+        "positionClass": "toast-bottom-right", // Vị trí thông báo
+        "closeButton": true, // Hiển thị nút đóng
+        "progressBar": true, // Hiển thị thanh tiến trình
+        "timeOut": 3000, // Thời gian hiển thị (ms)
+        "extendedTimeOut": 1000, // Thời gian hiển thị thêm (ms)
+        // ... Các tùy chọn khác ...
+    };
+
 </script>
 </body>
 

@@ -77,9 +77,18 @@
                                 <div class="quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" name="" id="" value="1">
+{{--                                            RowId of the item in the Cart--}}
+                                            <input type="text" name="" id="qtyInput"
+                                                   data-rowid="{{$rowId}}"
+                                                   value="{{$itemQTY ?? '1'}}">
                                         </div>
-                                        <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                        @if($rowId)
+                                            <!-- Hiển thị nút cập nhật nếu rowId tồn tại -->
+                                            <button class="primary-btn pd-cart" onclick="updateCart('{{$rowId}}', document.getElementById('qtyInput').value)">UPDATE CART</button>
+                                        @else
+                                            <!-- Hiển thị nút thêm vào giỏ hàng nếu rowId không tồn tại -->
+                                            <a href="javascript:addToCart({{$product->id}}, true)" class="primary-btn pd-cart">ADD TO CART</a>
+                                        @endif
                                     </div>
                                 </div>
                                 <ul class="pd-tags">

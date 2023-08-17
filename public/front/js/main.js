@@ -231,36 +231,6 @@
         magnify: 1.2
     });
 
-    /*-------------------
-    Quantity change
-    --------------------- */
-    var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn">-</span>');
-    proQty.append('<span class="inc qtybtn">+</span>');
-    proQty.on('click', '.qtybtn', function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        $button.parent().find('input').val(newVal);
-
-        //Update cart
-        var rowId = $button.parent().find('input').data('rowid');
-        updateCart(rowId, newVal);
-    });
-
-    /*-------------------
-    Quantity change
-    --------------------- */
-
     const product_men = $('.product-slider.men');
     const product_women = $('.product-slider.women');
     $('.filter-control').on('click', '.item', function () {
@@ -294,7 +264,7 @@
     // );
 })(jQuery);
 
-function addToCart(productId) {
+function addToCart(productId, reloadPage) {
     $.ajax({
         type: "GET",
         url: "cart/add",
@@ -310,6 +280,7 @@ function addToCart(productId) {
             if(cartHover_existingItems.length) {
                 console.log("found existing item");
                 cartHover_existingItems.find('.in-cart-details').text('$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty);
+                toastr.success('Đã cập nhật số lượng sản phẩm <span class="product-name">' + response['cartItem'].name + '</span>', 'Thành công');
             }else {
                 console.log("found new item");
                 var imagePath = response['cartItem'].options && response['cartItem'].options.images && response['cartItem'].options.images.length > 0
@@ -329,8 +300,15 @@ function addToCart(productId) {
                     '    </td>\n' +
                     '</tr>';
                 cartHover_tbody.append(newItem);
+                toastr.success('Đã thêm sản phẩm <span class="product-name">' + response['cartItem'].name + '</span>!', 'Thành công');
             }
-            alert('Add successful!\nProduct: ' + response['cartItem'].name);
+
+            if (reloadPage) {
+                // Tải lại trang sau khi thông báo hiển thị
+                setTimeout(function () {
+                    location.reload();
+                }, 2000); // Sau 2 giây
+            }
             console.log(response);
         },
         error: function (response) {
@@ -340,7 +318,89 @@ function addToCart(productId) {
     });
 }
 
-function removeCartItem(rowId) {
+    /*-------------------
+    Quantity change
+    --------------------- */
+    var proQty = $('.pro-qty');
+    proQty.prepend('<span class="dec qtybtn">-</span>');
+    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
+
+        //Update cart
+        var rowId = $button.parent().find('input').data('rowid');
+        updateCart(rowId, newVal);
+    });
+
+    /*-------------------
+    Quantity change
+    --------------------- */
+
+function updateCart(rowId, qty) {
+    $.ajax({
+        type: "GET",
+        url: "cart/update",
+        data: {rowId: rowId, qty: qty},
+
+        success: function (response) {
+            //Mini cart
+            $('.cart-count').text(response['count']);
+            $('.cart-price').text('$' + response['total']);
+            $('.select-total h5').text('$' + response['total']);
+
+            var cartHover_tbody = $('.select-items tbody');
+            var cartHover_existingItems = cartHover_tbody.find("tr" + "[data-rowId='" + rowId + "']");
+            if (qty === 0) {
+                cartHover_existingItems.remove();
+            }else {
+                cartHover_existingItems.find('.in-cart-details').text('$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty)
+            }
+
+            //Main cart
+            var cart_tbody = $('.cart-table tbody');
+            var cart_existingItems = cart_tbody.find("tr" + "[data-rowId='" + rowId + "']");
+
+            if (qty === 0) {
+                cart_existingItems.remove();
+            }else {
+                cart_existingItems.find('.total-price').text('$' + (response['cartItem'].price * response['cartItem'].qty).toFixed(2));
+            }
+
+            $('.subtotal span').text('$' + response['subtotal']);
+            $('.cart-total span').text('$' + response['total']);
+
+            // alert('Update cart successfully!');
+            toastr.success('Đã cập nhật số lượng sản phẩm <span class="product-name">' + response['cartItem'].name + '</span>!', 'Thành công');
+
+            if (response['reloadPage']) {
+                // Tải lại trang sau khi thông báo hiển thị
+                setTimeout(function () {
+                    location.reload();
+                }, 2000); // Sau 2 giây
+            }
+            console.log('Updated cart');
+            console.log(response);
+        },
+        error: function (response) {
+            alert('Update Failed!');
+            console.log(response);
+        }
+    });
+}
+
+function removeCartItem(rowId, productName) {
     $.ajax({
         type: "GET",
         url: "cart/delete",
@@ -361,7 +421,9 @@ function removeCartItem(rowId) {
             var cart_existingItem = cart_tbody.find("tr" + "[data-rowId='" + rowId + "']")
             cart_existingItem.remove();
 
-            alert('Remove successful!\nRowID: ' + rowId);
+            toastr.success('Đã xoá sản phẩm <span class="product-name">' + productName + '</span> khỏi giỏ hàng!', 'Thành công');
+
+            // alert('Remove successful!\nRowID: ' + rowId);
             console.log('Removed item');
             console.log(response);
         },
@@ -404,46 +466,12 @@ function destroyCart() {
     });
 }
 
-function updateCart(rowId, qty) {
-    $.ajax({
-        type: "GET",
-        url: "cart/update",
-        data: {rowId: rowId, qty: qty},
+function saveProfileInfo () {
+    toastr.success('Đang cập nhật thông tin...', 'OK');
 
-        success: function (response) {
-            //Mini cart
-            $('.cart-count').text(response['count']);
-            $('.cart-price').text('$' + response['total']);
-            $('.select-total h5').text('$' + response['total']);
-
-            var cartHover_tbody = $('.select-items tbody');
-            var cartHover_existingItems = cartHover_tbody.find("tr" + "[data-rowId='" + rowId + "']");
-            if (qty === 0) {
-                cartHover_existingItems.remove();
-            }else {
-                cartHover_existingItems.find('.in-cart-details').text('$' + response['cartItem'].price.toFixed(2) + ' x ' + response['cartItem'].qty)
-            }
-
-            //Main cart
-            var cart_tbody = $('.cart-table tbody');
-            var cart_existingItems = cart_tbody.find("tr" + "[data-rowId='" + rowId + "']");
-
-            if (qty === 0) {
-                cart_existingItems.remove();
-            }else {
-                cart_existingItems.find('.total-price').text('$' + (response['cartItem'].price * response['cartItem'].qty).toFixed(2));
-            }
-
-            $('.subtotal span').text('$' + response['subtotal']);
-            $('.cart-total span').text('$' + response['total']);
-
-            // alert('Update cart successfully!');
-            console.log('Updated cart');
-            console.log(response);
-        },
-        error: function (response) {
-            alert('Update Failed!');
-            console.log(response);
-        }
-    });
+    setTimeout(function () {
+        // Lấy reference tới form và submit
+        var form = document.getElementById('profile-form');
+        form.submit();
+    }, 1700); // Delay
 }

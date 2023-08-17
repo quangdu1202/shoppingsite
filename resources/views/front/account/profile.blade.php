@@ -10,7 +10,7 @@
     <script src="front/js/profile.js"></script>
     <div class="container bootstrap snippets bootdey">
     <div class="row">
-        <form action="account/profile" method="post" enctype="multipart/form-data">
+        <form id="profile-form" action="account/profile" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="profile-nav col-md-3">
@@ -113,7 +113,7 @@
                                 <p><label for="postcode_zip">Zip </label>: <input name="postcode_zip" type="text" value="{{$user->postcode_zip}}"></p>
                             </div>
                             <div class="bio-row" style="width: 100% !important;">
-                                <button type="submit" class="save-profile-btn">SAVE</button>
+                                <button type="button" class="save-profile-btn" onclick="saveProfileInfo()">SAVE</button>
                                 {{--                                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="save-profile-btn" style="text-decoration: none;">SAVE</a>--}}
                             </div>
                         </div>

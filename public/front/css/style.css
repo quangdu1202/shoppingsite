@@ -2519,7 +2519,7 @@ ol {
 }
 
 .product-details .quantity .primary-btn.pd-cart {
-	padding: 14px 70px 10px;
+	padding: 12px 70px;
 }
 
 .product-details .pd-tags {
@@ -4305,7 +4305,7 @@ ol {
 		margin-right: 26px;
 	}
 	.product-details .quantity .primary-btn.pd-cart {
-		padding: 14px 30px 10px;
+		padding: 12px 30px;
 	}
 	.tab-item ul li a {
 		padding: 18px 39px;
@@ -4640,7 +4640,7 @@ ol {
 		margin-bottom: 10px;
 	}
 	.product-details .quantity .primary-btn.pd-cart {
-		padding: 14px 20px 10px;
+		padding: 12px 20px;
 	}
 	.tab-item ul li a {
 		padding: 18px 30px;

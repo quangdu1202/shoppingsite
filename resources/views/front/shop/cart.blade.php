@@ -54,7 +54,7 @@
                                     </td>
                                     <td class="total-price first-row">${{number_format($cartItem->price * $cartItem->qty, 2)}}</td>
                                     <td class="close-td first-row">
-                                        <i onclick="removeCartItem('{{$cartItem->rowId}}')" class="ti-close"></i>
+                                        <i onclick="removeCartItem('{{$cartItem->rowId}}', '{{$cartItem->name}}')" class="ti-close"></i>
                                     </td>
                                 </tr>
                             @endforeach
