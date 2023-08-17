@@ -13,9 +13,12 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-6">
+                            @php
+                                $imagePath = 'front/img/products/' . $product->productImages[0]->path;
+                            @endphp
                             <div class="product-pic-zoom">
                                 <img class="product-big-img"
-                                     src="front/img/products/{{$product->productImages[0]->path ?? '_default-product.jpg'}}" alt="">
+                                     src="{{ file_exists($imagePath) ? $imagePath : 'front/img/products/_default-product.jpg'}}" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>

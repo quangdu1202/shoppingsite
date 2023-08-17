@@ -121,7 +121,10 @@
                                         <tbody>
                                         @foreach(Cart::content() as $cartItem)
                                         <tr data-rowId="{{$cartItem->rowId}}">
-                                            <td class="si-pic"><img style="height: 70px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path ?? '_default-product.jpg'}}" alt=""></td>
+                                            @php
+                                                $imagePath = 'front/img/products/' . ($cartItem->options->images[0]->path ?? '_default-product.jpg');
+                                            @endphp
+                                            <td class="si-pic"><img style="height: 70px; margin: auto" src="{{ file_exists($imagePath) ? $imagePath : 'front/img/products/_default-product.jpg'}}" alt=""></td>
                                             <td class="si-text">
                                                 <div class="product-selected">
                                                     <p class="in-cart-details">${{number_format($cartItem->price, 2)}} x {{$cartItem->qty}}</p>

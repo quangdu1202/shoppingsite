@@ -40,7 +40,10 @@
                             <tbody>
                             @foreach($cartItems as $cartItem)
                                 <tr data-rowid="{{$cartItem->rowId}}">
-                                    <td class="cart-pic first-row"><img style="height: 170px; margin: auto" src="front/img/products/{{$cartItem->options->images[0]->path ?? '_default-product.jpg'}}" alt=""></td>
+                                    @php
+                                        $imagePath = 'front/img/products/' . ($cartItem->options->images[0]->path ?? '_default-product.jpg');
+                                    @endphp
+                                    <td class="cart-pic first-row"><img style="height: 170px; margin: auto" src="{{ file_exists($imagePath) ? $imagePath : 'front/img/products/_default-product.jpg'}}" alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>{{$cartItem->name}}</h5>
                                     </td>

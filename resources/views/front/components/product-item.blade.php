@@ -1,6 +1,9 @@
 <div class="product-item item {{$product->tag}}">
     <div class="pi-pic">
-        <img src="front/img/products/{{$product->productImages[0]->path ?? '_default-product.jpg'}}" alt="">
+        @php
+            $imagePath = 'front/img/products/' . ($product->productImages[0]->path ?? '_default-product.jpg');
+        @endphp
+        <img src="{{ file_exists($imagePath) ? $imagePath : 'front/img/products/_default-product.jpg'}}" alt="">
         @if($product->discount != null)
             <div class="sale">Sale</div>
         @endif
